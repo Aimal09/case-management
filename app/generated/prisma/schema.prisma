@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Update your Case model to include the relation
+model Case {
+  id                String    @id @default(uuid())
+  code              String
+  title             String?
+  caseType          String?
+  status            String?
+  priority          String?
+  dateOfInstitution DateTime?
+  nextDate          DateTime?
+  location          String?
+  taluka            String?
+  deh               String?
+  description       String?   @db.Text
+
+  // Report requirement flags
+  requiresMukhtiarkarACReport   Boolean @default(false)
+  requiresEvacueePropertyReport Boolean @default(false)
+  requiresBarrageBranchReport   Boolean @default(false)
+  requiresNewspaperPublication  Boolean @default(false)
+
+  // Report fields
+  mukhtiarkarACReportUploaded Boolean @default(false)
+  mukhtiarkarACReportPath     String?
+
+  evacueePropertyReportUploaded Boolean @default(false)
+  evacueePropertyReportPath     String?
+
+  barrageBranchReportUploaded Boolean @default(false)
+  barrageBranchReportPath     String?
+
+  newspaperPublicationUploaded Boolean @default(false)
+  newspaperPublicationPath     String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  // Relations
+  evidences Evidences[]
+  notes     Notes[]
+  userCases UserCases[]
+}
+
+model Evidences {
+  id            String    @id @default(uuid())
+  code          String
+  type          String?
+  description   String?   @db.Text
+  dateCollected DateTime  @default(now())
+  caseId        String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime? @updatedAt
+
+  //Relations
+  Case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+}
+
+model Notes {
+  id          String    @id @default(uuid())
+  code        String
+  title       String?
+  content     String?   @db.Text
+  noteAddedOn DateTime  @default(now())
+  caseId      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+
+  //Relations
+  Case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)
+}
+
+model CaseTypes {
+  id   String  @id @default(uuid())
+  code String?
+  name String?
+}
+
+model Taluka {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  dehs      Deh[] // Relation to Deh model
+}
+
+model Deh {
+  id        String   @id @default(uuid())
+  name      String
+  talukaId  String // Foreign key to Taluka
+  taluka    Taluka   @relation(fields: [talukaId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name, talukaId]) // Ensure deh names are unique within a taluka
+}
+
+model User {
+  id            String      @id @default(uuid())
+  name          String
+  email         String      @unique // Add @unique here
+  password      String? // Add password field
+  role          String
+  designation   String?
+  contact       String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime?   @updatedAt
+  userCases     UserCases[] // Relation for cases created by this user
+  assignedCases UserCases[] @relation("AssignedToUser") // Add relation for cases assigned to this user
+}
+
+model UserCases {
+  id               String    @id @default(uuid())
+  userId           String
+  caseId           String
+  assignedToUserId String?
+  status           Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime? @updatedAt
+
+  //Relations
+  case           Case  @relation(fields: [caseId], references: [id], onDelete: Cascade)
+  user           User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignedToUser User? @relation("AssignedToUser", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+}
