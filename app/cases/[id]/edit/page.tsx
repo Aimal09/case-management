@@ -32,12 +32,6 @@ export default function EditCasePage() {
   const [dehs, setDehs] = useState<Array<{ id: string; name: string }>>([]);
   const [selectedTaluka, setSelectedTaluka] = useState<string>('');
   const [selectedDeh, setSelectedDeh] = useState<string>('');
-  const [reportRequirements, setReportRequirements] = useState({
-    requiresMukhtiarkarACReport: false,
-    requiresEvacueePropertyReport: false,
-    requiresBarrageBranchReport: false,
-    requiresNewspaperPublication: false
-  });
   
   useEffect(() => {
     async function fetchTalukas() {
@@ -134,13 +128,6 @@ export default function EditCasePage() {
         //setPersons(data.involvedPersons);
         setEvidences(data.evidences);
         setNotes(data.notes);
-
-        setReportRequirements({
-          requiresMukhtiarkarACReport: data.requiresMukhtiarkarACReport || false,
-          requiresEvacueePropertyReport: data.requiresEvacueePropertyReport || false,
-          requiresBarrageBranchReport: data.requiresBarrageBranchReport || false,
-          requiresNewspaperPublication: data.requiresNewspaperPublication || false
-        });
         
       } catch (err) {
         console.error('Error fetching case:', err);
@@ -385,9 +372,9 @@ export default function EditCasePage() {
                   <div className="text-sm text-gray-500">Case ID</div>
                   <div className="text-xl font-bold text-gray-500">{caseData.code}</div>
                 </div>
-                <div className="w-full md:w-auto">
-                  <div className="text-xs text-blue-600 mb-1 text-left">Assigned To</div>
+                <div className="w-full md:w-auto flex flex-col md:flex-row gap-2">
                   <div className="border border-blue-200 rounded-lg px-4 py-2 bg-blue-50 w-full md:w-auto">
+                    <div className="text-xs text-blue-600 mb-1 text-left">Assigned To</div>
                     <div className="text-sm font-medium text-gray-700">
                       {caseData.userCases?.[0]?.assignedToUser ? (
                         <div className="flex items-center">
@@ -399,6 +386,20 @@ export default function EditCasePage() {
                       )}
                     </div>
                   </div>
+                  
+                  {caseData.forwardedToMukhtiarkarId && (
+                    <div className="border border-green-200 rounded-lg px-4 py-2 bg-green-50 w-full md:w-auto">
+                      <div className="text-xs text-green-600 mb-1 text-left">Forwarded To</div>
+                      <div className="text-sm font-medium text-gray-700">
+                        <div className="flex items-center">
+                          <span className="text-green-700">
+                            {caseData.forwardedToMukhtiarkar ? caseData.forwardedToMukhtiarkar.name : 'Mukhtiarkar'}
+                          </span>
+                          <span className="ml-2 text-sm text-green-600">(Mukhtiarkar)</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

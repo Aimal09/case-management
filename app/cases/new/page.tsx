@@ -44,21 +44,13 @@ export default function NewCasePage() {
     notes: [] as Array<{ id?: string, code: string, title: string, content: string, noteAddedOn: string }>,
   });
 
-  // Add state for report requirements
-  const [reportRequirements, setReportRequirements] = useState({
-    requiresMukhtiarkarACReport: false,
-    requiresEvacueePropertyReport: false,
-    requiresBarrageBranchReport: false,
-    requiresNewspaperPublication: false
-  });
-
   const { user } = useAuth();
 
   // Fetch users with roles AC or Mukhtiarkar
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await fetch('/api/users?role=AC,Mukhtiarkar');
+        const response = await fetch('/api/users?role=AC');
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }
@@ -84,15 +76,6 @@ export default function NewCasePage() {
     setFormData(prev => ({
       ...prev,
       [id]: value
-    }));
-  };
-
-  // Handle checkbox changes
-  const handleReportRequirementChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setReportRequirements(prev => ({
-      ...prev,
-      [name]: checked
     }));
   };
 
@@ -226,10 +209,6 @@ export default function NewCasePage() {
           userId: user?.id,
           taluka: formData.taluka,
           deh: formData.deh,
-          requiresMukhtiarkarACReport: reportRequirements.requiresMukhtiarkarACReport,
-          requiresEvacueePropertyReport: reportRequirements.requiresEvacueePropertyReport,
-          requiresBarrageBranchReport: reportRequirements.requiresBarrageBranchReport,
-          requiresNewspaperPublication: reportRequirements.requiresNewspaperPublication,
           // involvedOfficers: officers.map(officer => ({
           //   code: officer.code,
           //   name: officer.name,
@@ -417,57 +396,25 @@ export default function NewCasePage() {
                 <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                   <div className="flex flex-col space-y-3">
                     <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="requiresMukhtiarkarACReport"
-                        name="requiresMukhtiarkarACReport"
-                        checked={reportRequirements.requiresMukhtiarkarACReport}
-                        onChange={handleReportRequirementChange}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <label htmlFor="requiresMukhtiarkarACReport" className="ml-2 text-sm font-medium text-gray-900">
+                      <label htmlFor="mukhtiarkarACReport" className="ml-2 text-sm font-medium text-gray-900">
                         Report of Mukhtiarkar and AC
                       </label>
                     </div>
                     
                     <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="requiresEvacueePropertyReport"
-                        name="requiresEvacueePropertyReport"
-                        checked={reportRequirements.requiresEvacueePropertyReport}
-                        onChange={handleReportRequirementChange}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <label htmlFor="requiresEvacueePropertyReport" className="ml-2 text-sm font-medium text-gray-900">
+                      <label htmlFor="evacueePropertyReport" className="ml-2 text-sm font-medium text-gray-900">
                         Report of Evacuee Property Branch
                       </label>
                     </div>
                     
                     <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="requiresBarrageBranchReport"
-                        name="requiresBarrageBranchReport"
-                        checked={reportRequirements.requiresBarrageBranchReport}
-                        onChange={handleReportRequirementChange}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <label htmlFor="requiresBarrageBranchReport" className="ml-2 text-sm font-medium text-gray-900">
+                      <label htmlFor="barrageBranchReport" className="ml-2 text-sm font-medium text-gray-900">
                         Report of Barrage Branch
                       </label>
                     </div>
                     
                     <div className="flex items-center">
-                      <input
-                        type="checkbox"
-                        id="requiresNewspaperPublication"
-                        name="requiresNewspaperPublication"
-                        checked={reportRequirements.requiresNewspaperPublication}
-                        onChange={handleReportRequirementChange}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                      />
-                      <label htmlFor="requiresNewspaperPublication" className="ml-2 text-sm font-medium text-gray-900">
+                      <label htmlFor="newspaperPublication" className="ml-2 text-sm font-medium text-gray-900">
                         Publication in Newspaper
                       </label>
                     </div>

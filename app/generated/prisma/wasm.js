@@ -130,10 +130,6 @@ exports.Prisma.CaseScalarFieldEnum = {
   taluka: 'taluka',
   deh: 'deh',
   description: 'description',
-  requiresMukhtiarkarACReport: 'requiresMukhtiarkarACReport',
-  requiresEvacueePropertyReport: 'requiresEvacueePropertyReport',
-  requiresBarrageBranchReport: 'requiresBarrageBranchReport',
-  requiresNewspaperPublication: 'requiresNewspaperPublication',
   mukhtiarkarACReportUploaded: 'mukhtiarkarACReportUploaded',
   mukhtiarkarACReportPath: 'mukhtiarkarACReportPath',
   evacueePropertyReportUploaded: 'evacueePropertyReportUploaded',
@@ -142,6 +138,8 @@ exports.Prisma.CaseScalarFieldEnum = {
   barrageBranchReportPath: 'barrageBranchReportPath',
   newspaperPublicationUploaded: 'newspaperPublicationUploaded',
   newspaperPublicationPath: 'newspaperPublicationPath',
+  forwardedToMukhtiarkarId: 'forwardedToMukhtiarkarId',
+  forwardedByName: 'forwardedByName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -211,6 +209,16 @@ exports.Prisma.UserCasesScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ReportScalarFieldEnum = {
+  id: 'id',
+  caseId: 'caseId',
+  reportType: 'reportType',
+  forwardedByMukhiarkar: 'forwardedByMukhiarkar',
+  forwardedByAC: 'forwardedByAC',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -235,7 +243,8 @@ exports.Prisma.ModelName = {
   Taluka: 'Taluka',
   Deh: 'Deh',
   User: 'User',
-  UserCases: 'UserCases'
+  UserCases: 'UserCases',
+  Report: 'Report'
 };
 
 /**

@@ -59,10 +59,6 @@ export async function POST(request: Request) {
         location: data.location,
         taluka: data.taluka || null,
         deh: data.deh || null,
-        requiresMukhtiarkarACReport: data.requiresMukhtiarkarACReport || false,
-        requiresEvacueePropertyReport: data.requiresEvacueePropertyReport || false,
-        requiresBarrageBranchReport: data.requiresBarrageBranchReport || false,
-        requiresNewspaperPublication: data.requiresNewspaperPublication || false,
         description: data.description
       },
       include: {

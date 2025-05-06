@@ -22,7 +22,14 @@ export async function GET(
         },
         evidences: true,
         notes: true,
-      },
+        forwardedToMukhtiarkar: {
+          select: {
+            id: true,
+            name: true,
+            role: true
+          }
+        }
+      }
     });
     
     if (!caseData) {

@@ -29,12 +29,6 @@ model Case {
   deh           String?
   description   String?    @db.Text
   
-  // Report requirement flags
-  requiresMukhtiarkarACReport     Boolean @default(false)
-  requiresEvacueePropertyReport   Boolean @default(false)
-  requiresBarrageBranchReport     Boolean @default(false)
-  requiresNewspaperPublication    Boolean @default(false)
-  
   // Report fields
   mukhtiarkarACReportUploaded Boolean @default(false)
   mukhtiarkarACReportPath    String?
@@ -47,11 +41,16 @@ model Case {
   
   newspaperPublicationUploaded Boolean @default(false)
   newspaperPublicationPath    String?
+
+  forwardedToMukhtiarkarId String?
+  forwardedToMukhtiarkar   User?   @relation("ForwardedCases", fields: [forwardedToMukhtiarkarId], references: [id])
+  forwardedByName String?
   
   createdAt     DateTime  @default(now())
   updatedAt     DateTime?  @updatedAt
 
   // Relations
+  reports          Report[]
   evidences        Evidences[]
   notes            Notes[]
   userCases        UserCases[] 
@@ -121,6 +120,7 @@ model User {
   updatedAt     DateTime? @updatedAt
   userCases     UserCases[]  // Relation for cases created by this user
   assignedCases UserCases[] @relation("AssignedToUser") // Add relation for cases assigned to this user
+  forwardedCases Case[] @relation("ForwardedCases")
 }
 
 model UserCases {
@@ -136,4 +136,15 @@ model UserCases {
   case          Case     @relation(fields: [caseId], references: [id], onDelete: Cascade)
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   assignedToUser User?   @relation("AssignedToUser", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+}
+
+model Report {
+  id                String   @id @default(cuid())
+  caseId            String
+  case              Case     @relation(fields: [caseId], references: [id])
+  reportType        String
+  forwardedByMukhiarkar        Boolean  @default(false)
+  forwardedByAC                Boolean  @default(false)  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 }

@@ -12,11 +12,10 @@ export async function GET(request: Request) {
     
     if (role) {
       // If role parameter is provided, filter by it
-      if (role === 'AC,Mukhtiarkar') {
+      if (role === 'AC') {
         whereClause = {
           OR: [
-            { role: 'AC' },
-            { role: 'Mukhtiarkar' }
+            { role: 'AC' }
           ]
         };
       } else {

@@ -152,6 +152,28 @@ export async function POST(request: NextRequest) {
     //   },
     // });
 
+    // Validate required fields
+    if (!reportType || !caseId) {
+      return NextResponse.json(
+        { error: 'Missing required fields' },
+        { status: 400 }
+      );
+    }
+
+    // Get the report to verify it exists
+    const report = await prisma.report.findFirst({
+      where: { reportType: reportType, caseId: caseId }
+    });
+
+    if (!report) {
+      await prisma.report.create({
+        data: {
+          caseId: caseId,
+          reportType: reportType,
+        }
+      });
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Report uploaded successfully',

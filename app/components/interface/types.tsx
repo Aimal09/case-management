@@ -12,10 +12,6 @@ export type Cases = {
     description?: string;
     createdAt?: string;
     updatedAt?: string;
-    requiresMukhtiarkarACReport?: boolean;
-    requiresEvacueePropertyReport?: boolean;
-    requiresBarrageBranchReport?: boolean;
-    requiresNewspaperPublication?: boolean;
 
     mukhtiarkarACReportUploaded?: boolean;
     evacueePropertyReportUploaded?: boolean;
@@ -26,6 +22,14 @@ export type Cases = {
     evacueePropertyReportPath?: string;
     barrageBranchReportPath?: string;
     newspaperPublicationPath?: string;
+
+    forwardedToMukhtiarkarId?: String;
+    forwardedByName?: String;
+    forwardedToMukhtiarkar?: {
+        id?: string;
+        name?: string;
+        role?: string;
+    }
     
     //involvedOfficers?: Officers[];
     //involvedPersons?: Persons[];
