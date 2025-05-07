@@ -1,12 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const caseId = params.id;
+    const { id } = await params;
+    const caseId = id;
     
     const caseData = await prisma.case.findUnique({
       where: {
@@ -51,10 +52,11 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const caseId = params.id;
+    const { id } = await params;
+    const caseId = id;
     const data = await request.json();
     
     // Extract the main case data
@@ -114,11 +116,12 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 )
   {
     try {
-    const caseId = params.id;
+    const { id } = await params;
+    const caseId = id;
 
     const deletedCase = await prisma.case.delete({
       where: {

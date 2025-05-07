@@ -3,11 +3,11 @@ import prisma from '@/lib/prisma';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { caseId: string } }  // Changed from 'id' to 'caseId'
+  { params }: { params: Promise<{ caseId: string }> }  // Changed from 'id' to 'caseId'
 ) {
   try {
-    const caseId = params.caseId;  // Changed from params.id to params.caseId
-
+    const { caseId } = await params;
+    
     if (!caseId) {
       return NextResponse.json(
         { error: 'Case ID is required' },  // Updated error message

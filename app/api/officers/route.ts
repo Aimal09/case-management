@@ -7,16 +7,16 @@ export async function POST(request: Request)
       const data = await request.json();
       
       // Add officer
-      const createOfficer = await prisma.involvedOfficers.create({
-        data: {
-          code: data.code,
-          name: data.name,
-          badge: data.badge,
-          caseId: data.caseId,
-        },
-      });
+      // const createOfficer = await prisma.involvedOfficers.create({
+      //   data: {
+      //     code: data.code,
+      //     name: data.name,
+      //     badge: data.badge,
+      //     caseId: data.caseId,
+      //   },
+      // });
       
-      return NextResponse.json(createOfficer, { status: 201 });
+      // return NextResponse.json(createOfficer, { status: 201 });
     } catch (error) {
       console.error('Error creating officer:', error);
       return NextResponse.json({ error: 'Failed to create officer' }, { status: 500 });
