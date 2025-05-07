@@ -4,7 +4,7 @@ import { useAuth } from '@/app/context/AuthContext';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { caseId: string; reportType: string } }
+  { params }: { params: Promise<{ caseId: string; reportType: string }> }
 ) {
   try {
     const user = useAuth();
@@ -13,7 +13,7 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { caseId, reportType } = params;
+    const { caseId, reportType } = await params;
 
     // Fetch the case
     const caseData = await prisma.case.findUnique({

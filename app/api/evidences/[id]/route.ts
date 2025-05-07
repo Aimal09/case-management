@@ -3,10 +3,11 @@ import prisma from '@/lib/prisma';
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const evidenceId = params.id;
+    const { id } = await params;
+    const evidenceId = id;
     const data = await request.json();
     
     const updatedEvidence = await prisma.evidences.update({
@@ -31,11 +32,12 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 )
   {
     try {
-    const evidenceId = params.id;
+    const { id } = await params;
+    const evidenceId = id;
 
     const deletedEvidence = await prisma.evidences.delete({
       where: {
