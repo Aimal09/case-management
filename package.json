@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 4000",
+    "generate": "prisma generate",
+    "prebuild": "npm run generate",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
