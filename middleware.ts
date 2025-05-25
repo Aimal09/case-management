@@ -58,7 +58,7 @@ export async function middleware(request: NextRequest) {
   
   // If it's an API route and there's no token, return 401
   if (!apiToken && isApiRoute) {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    return NextResponse.json({ message: 'Unauthorized | No Token' }, { status: 401 });
   }
   
   // Verify the token
@@ -68,7 +68,7 @@ export async function middleware(request: NextRequest) {
     // If the token is invalid, redirect to login or return 401 for API routes
     if (!payload) {
       if (isApiRoute) {
-        return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+        return NextResponse.json({ message: 'Unauthorized | Invalid Token' }, { status: 401 });
       } else {
         const url = new URL('/login', request.url);
         url.searchParams.set('from', path);
