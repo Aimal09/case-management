@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { jwtVerify } from 'jose';
+import { compactDecrypt, jwtVerify } from 'jose';
 
 // Routes that don't require authentication
 const publicRoutes = ['/login', '/forgot-password', '/reset-password', '/signup'];
@@ -39,6 +39,7 @@ export async function middleware(request: NextRequest) {
   // Rest of the middleware remains the same
   // Get the token from the cookies
   const token = request.cookies.get('authToken')?.value;
+  console.log(`token: ${token}`);
   
   // If there's no token and it's not a public route, redirect to login
   if (!token && !isApiRoute) {
@@ -58,7 +59,7 @@ export async function middleware(request: NextRequest) {
   
   // If it's an API route and there's no token, return 401
   if (!apiToken && isApiRoute) {
-    return NextResponse.json({ message: 'Unauthorized | No Token' }, { status: 401 });
+    return NextResponse.json({ message: `apitoken: "${apiToken}"; isApiRoute:"${isApiRoute}"; Unauthorized | No Token` }, { status: 401 });
   }
   
   // Verify the token
