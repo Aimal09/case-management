@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
 // Routes that don't require authentication
-const publicRoutes = ['/login', '/forgot-password', '/reset-password'];
+const publicRoutes = ['/login', '/forgot-password', '/reset-password', '/signup'];
 
 // Function to verify JWT token
 const verifyToken = async (token: string) => {
