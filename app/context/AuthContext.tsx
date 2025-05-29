@@ -31,7 +31,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       try {
         const token = localStorage.getItem('authToken');
-        console.log(`token: ${token}`)
+        console.log(`token_AuthContext: ${token}`)
         if (token) {
           // For mock implementation
           if (token === 'mock-token-for-testing') {
