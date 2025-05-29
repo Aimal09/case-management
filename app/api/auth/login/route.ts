@@ -8,7 +8,6 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'; // Use environme
 
 export async function POST(request: Request) {
   try {
-    localStorage.setItem("status", "post_Called");
     // Log the entire request for debugging
     console.log('Login request received');
     
@@ -16,9 +15,7 @@ export async function POST(request: Request) {
     try {
       requestBody = await request.json();
       console.log('Request body parsed successfully');
-      localStorage.setItem("status", "parsed");
     } catch (parseError) {
-      localStorage.setItem("status", "error-21");
       console.error('Error parsing request body:', parseError);
       return NextResponse.json(
         { message: 'Invalid request format' },
@@ -28,14 +25,12 @@ export async function POST(request: Request) {
     
     const { email, password } = requestBody;
     console.log('Login attempt for:', email);
-    localStorage.setItem("status", "Login attempt for");
     // Find user by email from database
     const user = await prisma.user.findFirst({
       where: {
         email: email
       }
     });
-    localStorage.setItem("status", `User: ${user}`);
 
     if (!user) {
       console.log('User not found:', email);
@@ -53,7 +48,6 @@ export async function POST(request: Request) {
       // Try bcrypt compare if user has a password
       isPasswordValid = await bcrypt.compare(password, user.password);
     }
-    localStorage.setItem("status", `passwordvalid: ${isPasswordValid}`);
     
     console.log('Password valid:', isPasswordValid);
     
@@ -75,31 +69,33 @@ export async function POST(request: Request) {
       JWT_SECRET,
       { expiresIn: '8h' }
     );
+    return NextResponse.json({ token });
 
-    localStorage.setItem("status", `token: ${token}`);
     console.log('Login successful for:', email);
     
     // Set token in cookies as well for better auth handling
-    const response = NextResponse.json({ 
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        designation: user.designation
-      }
-    });
+    /* Commenting for debugging */
+    // const response = NextResponse.json({ 
+    //   token,
+    //   user: {
+    //     id: user.id,
+    //     email: user.email,
+    //     name: user.name,
+    //     role: user.role,
+    //     designation: user.designation
+    //   }
+    // });
     
-    response.cookies.set('authToken', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 8 * 60 * 60, // 8 hours
-      //sameSite: 'lax',
-      path: '/',
-    });
-    localStorage.setItem("status", `cookieset: ${response}`);
-    return response;
+    // response.cookies.set('authToken', token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === 'production',
+    //   maxAge: 8 * 60 * 60, // 8 hours
+    //   //sameSite: 'lax',
+    //   path: '/',
+    // });
+
+    // return response;
+    /* /Commenting for debugging */
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
