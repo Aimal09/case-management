@@ -17,7 +17,6 @@ const verifyToken = async (token: string) => {
 };
 
 export async function middleware(request: NextRequest) {
-  console.log(`JWT_SECRET: ${process.env.JWT_SECRET}`);
   // Get the pathname
   const path = request.nextUrl.pathname;
 
@@ -29,13 +28,10 @@ export async function middleware(request: NextRequest) {
 
   // Check if the path is an API route
   const isApiRoute = path.startsWith('/api');
-  console.log(`isApiRoute: ${isApiRoute}`);
 
-  console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
   // TEMPORARY: Allow all API routes during development
   if (isApiRoute && process.env.NODE_ENV !== 'production') {
     return NextResponse.next();
-    console.log(`Line36: ${isApiRoute}`);
   }
   
   // If it's a public route, allow access
@@ -46,7 +42,6 @@ export async function middleware(request: NextRequest) {
   // Rest of the middleware remains the same
   // Get the token from the cookies
   const token = request.cookies.get('authToken')?.value;
-  console.log(`token_Middleware: ${token}`);
   
   // If there's no token and it's not a public route, redirect to login
   if (!token && !isApiRoute) {
