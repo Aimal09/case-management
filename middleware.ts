@@ -17,6 +17,7 @@ const verifyToken = async (token: string) => {
 };
 
 export async function middleware(request: NextRequest) {
+  console.log(`JWT_SECRET: ${process.env.JWT_SECRET}`);
   // Get the pathname
   const path = request.nextUrl.pathname;
 
