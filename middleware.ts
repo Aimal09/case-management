@@ -19,7 +19,7 @@ const verifyToken = async (token: string) => {
 export async function middleware(request: NextRequest) {
   // Get the pathname
   const path = request.nextUrl.pathname;
-  
+
   console.log(`Path: ${path}`);
   
   // Check if the path is a public route
@@ -45,7 +45,7 @@ export async function middleware(request: NextRequest) {
   // Rest of the middleware remains the same
   // Get the token from the cookies
   const token = request.cookies.get('authToken')?.value;
-  console.log(`token: ${token}`);
+  console.log(`token_Middleware: ${token}`);
   
   // If there's no token and it's not a public route, redirect to login
   if (!token && !isApiRoute) {
