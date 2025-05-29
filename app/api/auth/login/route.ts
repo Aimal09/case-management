@@ -2,19 +2,27 @@ import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { PrismaClient } from '../../../generated/prisma';
+import fs from 'fs';
+import path from 'path';
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'; // Use environment variable in production
 
+const logDebug = (message: string, data?: any) => {
+  const timestamp = new Date().toISOString();
+  const logMessage = `${timestamp} - ${message}${data ? ` - ${JSON.stringify(data, null, 2)}` : ''}\n`;
+  fs.appendFileSync(path.join(process.cwd(), 'public', 'login-debug.log'), logMessage);
+};
+
 export async function POST(request: Request) {
   try {
     // Log the entire request for debugging
-    console.log('Login request received');
+    logDebug('Line20: Login request received');
     
     let requestBody;
     try {
       requestBody = await request.json();
-      console.log('Request body parsed successfully');
+      logDebug('Line25: Request body parsed successfully');
     } catch (parseError) {
       console.error('Error parsing request body:', parseError);
       return NextResponse.json(
@@ -24,7 +32,7 @@ export async function POST(request: Request) {
     }
     
     const { email, password } = requestBody;
-    console.log('Login attempt for:', email);
+    logDebug('Line35: Login attempt for:', email);
     // Find user by email from database
     const user = await prisma.user.findFirst({
       where: {
@@ -33,7 +41,7 @@ export async function POST(request: Request) {
     });
 
     if (!user) {
-      console.log('User not found:', email);
+      logDebug('Line44: User not found:', email);
       return NextResponse.json(
         { message: 'Invalid email or password' },
         { status: 401 }
@@ -49,7 +57,7 @@ export async function POST(request: Request) {
       isPasswordValid = await bcrypt.compare(password, user.password);
     }
     
-    console.log('Password valid:', isPasswordValid);
+    logDebug('Line60: Password valid:', isPasswordValid);
     
     if (!isPasswordValid) {
       return NextResponse.json(
@@ -69,33 +77,33 @@ export async function POST(request: Request) {
       JWT_SECRET,
       { expiresIn: '8h' }
     );
-    return NextResponse.json({ token });
 
-    console.log('Login successful for:', email);
+    logDebug('Line81: Login successful for:', email);
     
     // Set token in cookies as well for better auth handling
-    /* Commenting for debugging */
-    // const response = NextResponse.json({ 
-    //   token,
-    //   user: {
-    //     id: user.id,
-    //     email: user.email,
-    //     name: user.name,
-    //     role: user.role,
-    //     designation: user.designation
-    //   }
-    // });
+    const response = NextResponse.json({ 
+      token,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        designation: user.designation
+      }
+    });
     
-    // response.cookies.set('authToken', token, {
-    //   httpOnly: true,
-    //   secure: process.env.NODE_ENV === 'production',
-    //   maxAge: 8 * 60 * 60, // 8 hours
-    //   //sameSite: 'lax',
-    //   path: '/',
-    // });
+    logDebug(`Line95: Token set in cookies: ${token}`);
+    logDebug(`Line96: Response: ${response}`);
 
-    // return response;
-    /* /Commenting for debugging */
+    response.cookies.set('authToken', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 8 * 60 * 60, // 8 hours
+      //sameSite: 'lax',
+      path: '/',
+    });
+
+    return response;
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
