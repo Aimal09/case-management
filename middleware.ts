@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { compactDecrypt, jwtVerify } from 'jose';
+import fs from 'fs';
+import path from 'path';
 
 // Routes that don't require authentication
 const publicRoutes = ['/login', '/forgot-password', '/reset-password', '/signup'];
@@ -16,22 +18,32 @@ const verifyToken = async (token: string) => {
   }
 };
 
+const logDebug = (message: string, data?: any) => {
+  const timestamp = new Date().toISOString();
+  const logMessage = `${timestamp} - ${message}${data ? ` - ${JSON.stringify(data, null, 2)}` : ''}\n`;
+  fs.appendFileSync(path.join(process.cwd(), 'public', 'login-debug.log'), logMessage);
+};
+
 export async function middleware(request: NextRequest) {
   // Get the pathname
   const path = request.nextUrl.pathname;
+  logDebug(`Line30: path: ${path}`);
   
   // Check if the path is a public route
   const isPublicRoute = publicRoutes.some(route => path.startsWith(route));
-  
+  logDebug(`Line34: isPublicRoute: ${isPublicRoute}`);
+
   // Check if the path is an API route
   const isApiRoute = path.startsWith('/api');
+  logDebug(`Line38: isApiRoute: ${isApiRoute}`);
   
-  console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
+  logDebug(`Line40: process.env.NODE_ENV: ${process.env.NODE_ENV}`);
   // TEMPORARY: Allow all API routes during development
   if (isApiRoute && process.env.NODE_ENV !== 'production') {
     return NextResponse.next();
   }
   
+  logDebug(`Line46: path: ${path}`);
   // If it's a public route, allow access
   if (isPublicRoute) {
     return NextResponse.next();
@@ -40,7 +52,7 @@ export async function middleware(request: NextRequest) {
   // Rest of the middleware remains the same
   // Get the token from the cookies
   const token = request.cookies.get('authToken')?.value;
-  console.log(`token: ${token}`);
+  logDebug(`token: ${token}`);
   
   // If there's no token and it's not a public route, redirect to login
   if (!token && !isApiRoute) {
