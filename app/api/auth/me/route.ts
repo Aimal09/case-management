@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
+import { PrismaClient } from '../../../generated/prisma';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-
+const prisma = new PrismaClient();
 // Define the interface for the decoded JWT payload
 interface DecodedToken {
   userId: string;
@@ -13,8 +14,15 @@ interface DecodedToken {
   exp: number;
 }
 
+async function writeLog(level: string, route: string, message: string) {
+  await prisma.log.create({
+    data: { level, route, message }
+  });
+}
+
 export async function GET(request: Request) {
   try {
+    await writeLog('INFO', 'auth/me/Route.ts', 'Handler hit(auth/me)');
     // Get the token from the Authorization header
     const authHeader = request.headers.get('Authorization');
     console.log('Auth header:', authHeader);

@@ -219,6 +219,14 @@ exports.Prisma.ReportScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LogScalarFieldEnum = {
+  id: 'id',
+  timestamp: 'timestamp',
+  level: 'level',
+  route: 'route',
+  message: 'message'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -244,7 +252,8 @@ exports.Prisma.ModelName = {
   Deh: 'Deh',
   User: 'User',
   UserCases: 'UserCases',
-  Report: 'Report'
+  Report: 'Report',
+  Log: 'Log'
 };
 
 /**
