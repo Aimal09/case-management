@@ -19,17 +19,21 @@ const verifyToken = async (token: string) => {
 export async function middleware(request: NextRequest) {
   // Get the pathname
   const path = request.nextUrl.pathname;
+  console.log(`Path: ${path}`);
   
   // Check if the path is a public route
   const isPublicRoute = publicRoutes.some(route => path.startsWith(route));
-  
+  console.log(`isPublicRoute: ${isPublicRoute}`);
+
   // Check if the path is an API route
   const isApiRoute = path.startsWith('/api');
-  
+  console.log(`isApiRoute: ${isApiRoute}`);
+
   console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
   // TEMPORARY: Allow all API routes during development
   if (isApiRoute && process.env.NODE_ENV !== 'production') {
     return NextResponse.next();
+    console.log(`Line36: ${isApiRoute}`);
   }
   
   // If it's a public route, allow access
