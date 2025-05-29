@@ -19,6 +19,7 @@ const verifyToken = async (token: string) => {
 export async function middleware(request: NextRequest) {
   // Get the pathname
   const path = request.nextUrl.pathname;
+  
   console.log(`Path: ${path}`);
   
   // Check if the path is a public route
