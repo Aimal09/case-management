@@ -31,6 +31,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       try {
         const token = localStorage.getItem('authToken');
+        console.log(`token: ${token}`)
         if (token) {
           // For mock implementation
           if (token === 'mock-token-for-testing') {
@@ -42,6 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             };
             setUser(mockUser);
           } else {
+            console.log(`Inside checkAuth; token: ${token}`)
             // Verify token and get user info
             const res = await fetch('/api/auth/me', {
               headers: {
@@ -51,6 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             
             if (res.ok) {
               const data = await res.json();
+              console.log(`Inside checkAuth; data: ${data}`)
               setUser(data.user);
             } else {
               // Invalid token
@@ -108,6 +111,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       const data = await response.json();
+      console.log('Login response data:', data);
       console.log('Login response status:', response.status);
       
       if (!response.ok) {

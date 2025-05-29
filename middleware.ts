@@ -26,6 +26,7 @@ export async function middleware(request: NextRequest) {
   // Check if the path is an API route
   const isApiRoute = path.startsWith('/api');
   
+  console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
   // TEMPORARY: Allow all API routes during development
   if (isApiRoute && process.env.NODE_ENV !== 'production') {
     return NextResponse.next();

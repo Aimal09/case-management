@@ -25,7 +25,6 @@ export async function POST(request: Request) {
     
     const { email, password } = requestBody;
     console.log('Login attempt for:', email);
-
     // Find user by email from database
     const user = await prisma.user.findFirst({
       where: {
@@ -70,29 +69,33 @@ export async function POST(request: Request) {
       JWT_SECRET,
       { expiresIn: '8h' }
     );
+    return NextResponse.json({ token });
 
     console.log('Login successful for:', email);
     
     // Set token in cookies as well for better auth handling
-    const response = NextResponse.json({ 
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-        designation: user.designation
-      }
-    });
+    /* Commenting for debugging */
+    // const response = NextResponse.json({ 
+    //   token,
+    //   user: {
+    //     id: user.id,
+    //     email: user.email,
+    //     name: user.name,
+    //     role: user.role,
+    //     designation: user.designation
+    //   }
+    // });
     
-    response.cookies.set('authToken', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 8 * 60 * 60, // 8 hours
-      path: '/',
-    });
-    
-    return response;
+    // response.cookies.set('authToken', token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === 'production',
+    //   maxAge: 8 * 60 * 60, // 8 hours
+    //   //sameSite: 'lax',
+    //   path: '/',
+    // });
+
+    // return response;
+    /* /Commenting for debugging */
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
