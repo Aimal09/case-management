@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { PrismaClient } from '../../../generated/prisma';
+import CryptoJS from 'crypto-js';
 
 export const runtime = 'nodejs';
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'; // Use environment variable in production
 
 export async function POST(request: Request) {
-  console.log(`JWT_SECRET: ${process.env.JWT_SECRET}`);
   try {
     // Log the entire request for debugging
     let requestBody;
@@ -20,34 +20,24 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    
-    const { email, password } = requestBody;
-    // Find user by email from database
+    const { email, password: hashedPassword } = await requestBody;
     const user = await prisma.user.findFirst({
-      where: {
-        email: email
-      }
+      where: { email }
     });
-
+    
     if (!user) {
       return NextResponse.json(
-        { message: 'Invalid email or password' },
+        { message: 'Invalid email' },
         { status: 401 }
       );
     }
 
-    // For testing purposes, directly check if password is "password123"
-    // In production, you would use bcrypt.compare
-    let isPasswordValid = false;
-    
-    if (user.password) {
-      // Try bcrypt compare if user has a password
-      isPasswordValid = await bcrypt.compare(password, user.password);
-    }
-    
+    const storedHashedPassword = CryptoJS.SHA256(user.password ?? "").toString();
+    const isPasswordValid = bcrypt.compare(hashedPassword, storedHashedPassword);
+
     if (!isPasswordValid) {
       return NextResponse.json(
-        { message: 'Invalid email or password' },
+        { message: 'Invalid password' },
         { status: 401 }
       );
     }

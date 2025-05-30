@@ -21,7 +21,7 @@ export default function Signup() {
     contact: ''
   });
 
-  const roles = ['Admin', 'DD', 'AC', 'Mukhtiarkar'];
+  const roles = ['AC', 'Mukhtiarkar'];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

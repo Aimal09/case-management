@@ -182,10 +182,10 @@ export default function LoginPage() {
 
             <div className="mt-4 text-center">
               <Link 
-                href="/signup"
+                href="/"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                Create new account
+                Login As Guest
               </Link>
             </div>
           </div>

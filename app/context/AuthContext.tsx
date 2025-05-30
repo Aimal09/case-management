@@ -1,6 +1,7 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
+import CryptoJS from 'crypto-js';
 
 interface User {
   id: string;
@@ -31,7 +32,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(true);
       try {
         const token = localStorage.getItem('authToken');
-        console.log(`token_AuthContext: ${token}`)
         if (token) {
           // For mock implementation
           if (token === 'mock-token-for-testing') {
@@ -43,7 +43,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             };
             setUser(mockUser);
           } else {
-            console.log(`Inside checkAuth; token: ${token}`)
             // Verify token and get user info
             const res = await fetch('/api/auth/me', {
               headers: {
@@ -53,7 +52,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             
             if (res.ok) {
               const data = await res.json();
-              console.log(`Inside checkAuth; data: ${data}`)
               setUser(data.user);
             } else {
               // Invalid token
@@ -75,62 +73,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      console.log('AuthContext: Attempting login with:', email);
-      
-      // Create a hardcoded user for testing purposes
-      // TEMPORARY: Skip the actual API call for testing
-    //   const mockUser = {
-    //     id: '1',
-    //     email: 'admin@example.com',
-    //     name: 'Admin User',
-    //     role: 'admin'
-    //   };
-      
-    //   const mockToken = 'mock-token-for-testing';
-      
-    //   // Store token in localStorage
-    //   localStorage.setItem('authToken', mockToken);
-    //   console.log('Login successful with mock data');
-      
-    //   // Set the user state
-    //   setUser(mockUser);
-      
-    //   // Force a router navigation to refresh the UI state
-    //   router.push('/');
-      
-    //   return { user: mockUser, token: mockToken };
-      
-      // Uncomment this when API is working
+      // Hash the password before sending
+      const hashedPassword = CryptoJS.SHA256(password).toString();
+
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'  // CSRF protection
         },
-        body: JSON.stringify({ email, password }),
-        credentials: 'include',
+        credentials: 'include',  // Important for cookie handling
+        body: JSON.stringify({ 
+          email, 
+          password: hashedPassword 
+        })
       });
 
-      const data = await response.json();
-      console.log('Login response data:', data);
-      console.log('Login response status:', response.status);
-      
       if (!response.ok) {
-        console.error('Login failed:', data);
-        throw new Error(data.message || 'Login failed');
+        throw new Error('Login failed');
       }
 
+      const data = await response.json();
       localStorage.setItem('authToken', data.token);
-      console.log('Login successful, token stored');
       setUser(data.user);
-      return data;
-      
+      router.push('/');
     } catch (error) {
       console.error('Login error:', error);
       throw error;
     } finally {
       setLoading(false);
     }
-  };
+};
 
   const logout = () => {
     localStorage.removeItem('authToken');
