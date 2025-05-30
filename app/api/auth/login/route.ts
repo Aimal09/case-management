@@ -2,68 +2,42 @@ import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { PrismaClient } from '../../../generated/prisma';
+import CryptoJS from 'crypto-js';
 
 export const runtime = 'nodejs';
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key'; // Use environment variable in production
 
-async function writeLog(level: string, route: string, message: string) {
-  await prisma.log.create({
-    data: { level, route, message }
-  });
-}
-
 export async function POST(request: Request) {
-  await writeLog('INFO', 'auth/login/Route.ts', 'Handler hit');
-  console.log(`JWT_SECRET: ${process.env.JWT_SECRET}`);
   try {
     // Log the entire request for debugging
-    await writeLog('INFO', 'auth/login/Route.ts', 'Login request received');
-    
     let requestBody;
     try {
       requestBody = await request.json();
-      await writeLog('INFO', 'auth/login/Route.ts', 'Request body parsed successfully');
     } catch (parseError) {
-      await writeLog('ERROR', 'auth/login/Route.ts', `Error parsing request body ${parseError}`);
       return NextResponse.json(
         { message: 'Invalid request format' },
         { status: 400 }
       );
     }
-    
-    const { email, password } = requestBody;
-    console.log('Login attempt for:', email);
-    await writeLog('INFO', 'auth/login/Route.ts', `Login attempt for ${email}`);
-    // Find user by email from database
+    const { email, password: hashedPassword } = await requestBody;
     const user = await prisma.user.findFirst({
-      where: {
-        email: email
-      }
+      where: { email }
     });
-
+    
     if (!user) {
-      await writeLog('ERROR', 'auth/login/Route.ts', `User not found ${email}`);
       return NextResponse.json(
-        { message: 'Invalid email or password' },
+        { message: 'Invalid email' },
         { status: 401 }
       );
     }
 
-    // For testing purposes, directly check if password is "password123"
-    // In production, you would use bcrypt.compare
-    let isPasswordValid = false;
-    
-    if (user.password) {
-      // Try bcrypt compare if user has a password
-      isPasswordValid = await bcrypt.compare(password, user.password);
-    }
-    
-    await writeLog('INFO', 'auth/login/Route.ts', `Password valid ${isPasswordValid}`);
-    
+    const storedHashedPassword = CryptoJS.SHA256(user.password ?? "").toString();
+    const isPasswordValid = bcrypt.compare(hashedPassword, storedHashedPassword);
+
     if (!isPasswordValid) {
       return NextResponse.json(
-        { message: 'Invalid email or password' },
+        { message: 'Invalid password' },
         { status: 401 }
       );
     }
@@ -79,10 +53,6 @@ export async function POST(request: Request) {
       JWT_SECRET,
       { expiresIn: '8h' }
     );
-    console.log('Generated token:', token);
-    await writeLog('INFO', 'auth/login/Route.ts', `Generated token ${token}`);
-    
-    await writeLog('INFO', 'auth/login/Route.ts', `Login successful for ${email}`);
 
     // Set token in cookies as well for better auth handling
     const response = NextResponse.json({ 
@@ -104,7 +74,6 @@ export async function POST(request: Request) {
       path: '/',
     });
 
-    await writeLog('INFO', 'auth/login/Route.ts', `Response ${response}`);
     return response;
   } catch (error) {
     console.error('Login error:', error);
