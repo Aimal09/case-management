@@ -74,7 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(true);
     try {
       // Hash the password before sending
-      const hashedPassword = CryptoJS.SHA256(password).toString();
+      const hashedPassword = CryptoJS.AES.encrypt(password, "pwd").toString();
 
       const response = await fetch('/api/auth/login', {
         method: 'POST',

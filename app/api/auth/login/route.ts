@@ -32,8 +32,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const storedHashedPassword = CryptoJS.SHA256(user.password ?? "").toString();
-    const isPasswordValid = bcrypt.compare(hashedPassword, storedHashedPassword);
+    const bytes      = CryptoJS.AES.decrypt(hashedPassword, "pwd");
+    const plaintext  = bytes.toString(CryptoJS.enc.Utf8);
+    const isPasswordValid = await bcrypt.compare(plaintext, user.password || "");
 
     if (!isPasswordValid) {
       return NextResponse.json(
