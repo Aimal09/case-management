@@ -232,14 +232,91 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.CaseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  title: 'title',
+  caseType: 'caseType',
+  status: 'status',
+  priority: 'priority',
+  location: 'location',
+  taluka: 'taluka',
+  deh: 'deh',
+  description: 'description',
+  mukhtiarkarACReportPath: 'mukhtiarkarACReportPath',
+  evacueePropertyReportPath: 'evacueePropertyReportPath',
+  barrageBranchReportPath: 'barrageBranchReportPath',
+  newspaperPublicationPath: 'newspaperPublicationPath',
+  forwardedToMukhtiarkarId: 'forwardedToMukhtiarkarId',
+  forwardedByName: 'forwardedByName'
+};
+
+exports.Prisma.EvidencesOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  type: 'type',
+  description: 'description',
+  caseId: 'caseId'
+};
+
+exports.Prisma.NotesOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  title: 'title',
+  content: 'content',
+  caseId: 'caseId'
+};
+
+exports.Prisma.CaseTypesOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+};
+
+exports.Prisma.TalukaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.DehOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  talukaId: 'talukaId'
+};
+
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  designation: 'designation',
+  contact: 'contact'
+};
+
+exports.Prisma.UserCasesOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  caseId: 'caseId',
+  assignedToUserId: 'assignedToUserId'
+};
+
+exports.Prisma.ReportOrderByRelevanceFieldEnum = {
+  id: 'id',
+  caseId: 'caseId',
+  reportType: 'reportType'
+};
+
+exports.Prisma.LogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  level: 'level',
+  route: 'route',
+  message: 'message'
 };
 
 

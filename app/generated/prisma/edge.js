@@ -204,14 +204,91 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-};
-
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.CaseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  title: 'title',
+  caseType: 'caseType',
+  status: 'status',
+  priority: 'priority',
+  location: 'location',
+  taluka: 'taluka',
+  deh: 'deh',
+  description: 'description',
+  mukhtiarkarACReportPath: 'mukhtiarkarACReportPath',
+  evacueePropertyReportPath: 'evacueePropertyReportPath',
+  barrageBranchReportPath: 'barrageBranchReportPath',
+  newspaperPublicationPath: 'newspaperPublicationPath',
+  forwardedToMukhtiarkarId: 'forwardedToMukhtiarkarId',
+  forwardedByName: 'forwardedByName'
+};
+
+exports.Prisma.EvidencesOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  type: 'type',
+  description: 'description',
+  caseId: 'caseId'
+};
+
+exports.Prisma.NotesOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  title: 'title',
+  content: 'content',
+  caseId: 'caseId'
+};
+
+exports.Prisma.CaseTypesOrderByRelevanceFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+};
+
+exports.Prisma.TalukaOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.DehOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  talukaId: 'talukaId'
+};
+
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  designation: 'designation',
+  contact: 'contact'
+};
+
+exports.Prisma.UserCasesOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  caseId: 'caseId',
+  assignedToUserId: 'assignedToUserId'
+};
+
+exports.Prisma.ReportOrderByRelevanceFieldEnum = {
+  id: 'id',
+  caseId: 'caseId',
+  reportType: 'reportType'
+};
+
+exports.Prisma.LogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  level: 'level',
+  route: 'route',
+  message: 'message'
 };
 
 
@@ -265,18 +342,17 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "postgresql",
-  "postinstall": false,
+  "activeProvider": "mysql",
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "mysql://Ahsan:@Ahsan982@@localhost:3306/case_management"
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Update your Case model to include the relation\nmodel Case {\n  id                String    @id @default(uuid())\n  code              String\n  title             String?\n  caseType          String?\n  status            String?\n  priority          String?\n  dateOfInstitution DateTime?\n  nextDate          DateTime?\n  location          String?\n  taluka            String?\n  deh               String?\n  description       String?   @db.Text\n\n  // Report fields\n  mukhtiarkarACReportUploaded Boolean @default(false)\n  mukhtiarkarACReportPath     String?\n\n  evacueePropertyReportUploaded Boolean @default(false)\n  evacueePropertyReportPath     String?\n\n  barrageBranchReportUploaded Boolean @default(false)\n  barrageBranchReportPath     String?\n\n  newspaperPublicationUploaded Boolean @default(false)\n  newspaperPublicationPath     String?\n\n  forwardedToMukhtiarkarId String?\n  forwardedToMukhtiarkar   User?   @relation(\"ForwardedCases\", fields: [forwardedToMukhtiarkarId], references: [id])\n  forwardedByName          String?\n\n  createdAt DateTime  @default(now())\n  updatedAt DateTime? @updatedAt\n\n  // Relations\n  reports   Report[]\n  evidences Evidences[]\n  notes     Notes[]\n  userCases UserCases[]\n}\n\nmodel Evidences {\n  id            String    @id @default(uuid())\n  code          String\n  type          String?\n  description   String?   @db.Text\n  dateCollected DateTime  @default(now())\n  caseId        String\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime? @updatedAt\n\n  //Relations\n  Case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)\n}\n\nmodel Notes {\n  id          String    @id @default(uuid())\n  code        String\n  title       String?\n  content     String?   @db.Text\n  noteAddedOn DateTime  @default(now())\n  caseId      String\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime? @updatedAt\n\n  //Relations\n  Case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)\n}\n\nmodel CaseTypes {\n  id   String  @id @default(uuid())\n  code String?\n  name String?\n}\n\nmodel Taluka {\n  id        String   @id @default(uuid())\n  name      String   @unique\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  dehs      Deh[] // Relation to Deh model\n}\n\nmodel Deh {\n  id        String   @id @default(uuid())\n  name      String\n  talukaId  String // Foreign key to Taluka\n  taluka    Taluka   @relation(fields: [talukaId], references: [id])\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([name, talukaId]) // Ensure deh names are unique within a taluka\n}\n\nmodel User {\n  id             String      @id @default(uuid())\n  name           String\n  email          String      @unique // Add @unique here\n  password       String? // Add password field\n  role           String\n  designation    String?\n  contact        String?\n  createdAt      DateTime    @default(now())\n  updatedAt      DateTime?   @updatedAt\n  userCases      UserCases[] // Relation for cases created by this user\n  assignedCases  UserCases[] @relation(\"AssignedToUser\") // Add relation for cases assigned to this user\n  forwardedCases Case[]      @relation(\"ForwardedCases\")\n}\n\nmodel UserCases {\n  id               String    @id @default(uuid())\n  userId           String\n  caseId           String\n  assignedToUserId String?\n  status           Boolean   @default(false)\n  createdAt        DateTime  @default(now())\n  updatedAt        DateTime? @updatedAt\n\n  //Relations\n  case           Case  @relation(fields: [caseId], references: [id], onDelete: Cascade)\n  user           User  @relation(fields: [userId], references: [id], onDelete: Cascade)\n  assignedToUser User? @relation(\"AssignedToUser\", fields: [assignedToUserId], references: [id], onDelete: SetNull)\n}\n\nmodel Report {\n  id                    String   @id @default(cuid())\n  caseId                String\n  case                  Case     @relation(fields: [caseId], references: [id])\n  reportType            String\n  forwardedByMukhiarkar Boolean  @default(false)\n  forwardedByAC         Boolean  @default(false)\n  createdAt             DateTime @default(now())\n  updatedAt             DateTime @updatedAt\n}\n\nmodel Log {\n  id        String   @id @default(uuid())\n  timestamp DateTime @default(now())\n  level     String\n  route     String\n  message   String\n}\n",
-  "inlineSchemaHash": "c020a71ae29b0095798eb6aa37ef097c82a50942abb967a3e7b06ce39495b8f0",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Update your Case model to include the relation\nmodel Case {\n  id                String    @id @default(uuid())\n  code              String\n  title             String?\n  caseType          String?\n  status            String?\n  priority          String?\n  dateOfInstitution DateTime?\n  nextDate          DateTime?\n  location          String?\n  taluka            String?\n  deh               String?\n  description       String?   @db.Text\n\n  // Report fields\n  mukhtiarkarACReportUploaded Boolean @default(false)\n  mukhtiarkarACReportPath     String?\n\n  evacueePropertyReportUploaded Boolean @default(false)\n  evacueePropertyReportPath     String?\n\n  barrageBranchReportUploaded Boolean @default(false)\n  barrageBranchReportPath     String?\n\n  newspaperPublicationUploaded Boolean @default(false)\n  newspaperPublicationPath     String?\n\n  forwardedToMukhtiarkarId String?\n  forwardedToMukhtiarkar   User?   @relation(\"ForwardedCases\", fields: [forwardedToMukhtiarkarId], references: [id])\n  forwardedByName          String?\n\n  createdAt DateTime  @default(now())\n  updatedAt DateTime? @updatedAt\n\n  // Relations\n  reports   Report[]\n  evidences Evidences[]\n  notes     Notes[]\n  userCases UserCases[]\n}\n\nmodel Evidences {\n  id            String    @id @default(uuid())\n  code          String\n  type          String?\n  description   String?   @db.Text\n  dateCollected DateTime  @default(now())\n  caseId        String\n  createdAt     DateTime  @default(now())\n  updatedAt     DateTime? @updatedAt\n\n  //Relations\n  Case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)\n}\n\nmodel Notes {\n  id          String    @id @default(uuid())\n  code        String\n  title       String?\n  content     String?   @db.Text\n  noteAddedOn DateTime  @default(now())\n  caseId      String\n  createdAt   DateTime  @default(now())\n  updatedAt   DateTime? @updatedAt\n\n  //Relations\n  Case Case @relation(fields: [caseId], references: [id], onDelete: Cascade)\n}\n\nmodel CaseTypes {\n  id   String  @id @default(uuid())\n  code String?\n  name String?\n}\n\nmodel Taluka {\n  id        String   @id @default(uuid())\n  name      String   @unique\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  dehs      Deh[] // Relation to Deh model\n}\n\nmodel Deh {\n  id        String   @id @default(uuid())\n  name      String\n  talukaId  String // Foreign key to Taluka\n  taluka    Taluka   @relation(fields: [talukaId], references: [id])\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([name, talukaId]) // Ensure deh names are unique within a taluka\n}\n\nmodel User {\n  id             String      @id @default(uuid())\n  name           String\n  email          String      @unique // Add @unique here\n  password       String? // Add password field\n  role           String\n  designation    String?\n  contact        String?\n  createdAt      DateTime    @default(now())\n  updatedAt      DateTime?   @updatedAt\n  userCases      UserCases[] // Relation for cases created by this user\n  assignedCases  UserCases[] @relation(\"AssignedToUser\") // Add relation for cases assigned to this user\n  forwardedCases Case[]      @relation(\"ForwardedCases\")\n}\n\nmodel UserCases {\n  id               String    @id @default(uuid())\n  userId           String\n  caseId           String\n  assignedToUserId String?\n  status           Boolean   @default(false)\n  createdAt        DateTime  @default(now())\n  updatedAt        DateTime? @updatedAt\n\n  //Relations\n  case           Case  @relation(fields: [caseId], references: [id], onDelete: Cascade)\n  user           User  @relation(fields: [userId], references: [id], onDelete: Cascade)\n  assignedToUser User? @relation(\"AssignedToUser\", fields: [assignedToUserId], references: [id], onDelete: SetNull)\n}\n\nmodel Report {\n  id                    String   @id @default(cuid())\n  caseId                String\n  case                  Case     @relation(fields: [caseId], references: [id])\n  reportType            String\n  forwardedByMukhiarkar Boolean  @default(false)\n  forwardedByAC         Boolean  @default(false)\n  createdAt             DateTime @default(now())\n  updatedAt             DateTime @updatedAt\n}\n\nmodel Log {\n  id        String   @id @default(uuid())\n  timestamp DateTime @default(now())\n  level     String\n  route     String\n  message   String\n}\n",
+  "inlineSchemaHash": "02440f3000011c7b32fae26b7cb763c106e8ae3250e0aa679e2f764eae3d08c9",
   "copyEngine": true
 }
 config.dirname = '/'
