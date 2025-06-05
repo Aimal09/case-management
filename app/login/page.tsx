@@ -20,6 +20,10 @@ export default function LoginPage() {
     // Check localStorage directly for token
     const token = localStorage.getItem('authToken');
     
+    console.log('Token from localStorage:', token);
+    console.log('isAuthenticated:', isAuthenticated);
+    console.log('authLoading:', authLoading);
+
     // Only redirect if we have a token or if auth context says we're authenticated
     if ((token || isAuthenticated) && !authLoading) {
       console.log('User already authenticated, redirecting to dashboard');
@@ -46,6 +50,7 @@ export default function LoginPage() {
       // Use the login function from AuthContext instead of direct fetch
       await login(credentials.email, credentials.password);
       
+      console.log('Login successful, redirecting to dashboard');
       // The redirect will be handled by the login function or the useEffect above
     } catch (err: any) {
       console.error('Login error:', err);
