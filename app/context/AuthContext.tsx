@@ -95,7 +95,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await response.json();
       localStorage.setItem('authToken', data.token);
       setUser(data.user);
-      router.push('/');
+      //router.push('/');
+      window.location.href = '/';
     } catch (error) {
       console.error('Login error:', error);
       throw error;
