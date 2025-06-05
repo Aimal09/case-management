@@ -79,8 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest'  // CSRF protection
+          'Content-Type': 'application/json'
         },
         credentials: 'include',  // Important for cookie handling
         body: JSON.stringify({ 

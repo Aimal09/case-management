@@ -343,11 +343,12 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "mysql://Ahsan:@Ahsan982@@localhost:3306/case_management"
+        "value": null
       }
     }
   },
