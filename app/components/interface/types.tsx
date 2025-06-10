@@ -4,8 +4,8 @@ export type Cases = {
     title?: string;
     caseType?: string;
     status?: string;
-    taluka?: string;
-    deh?: string;
+    taluka?: { name: string };
+    deh?: { name: string };
     dateOfInstitution?: string;
     nextDate?: string;
     location?: string;

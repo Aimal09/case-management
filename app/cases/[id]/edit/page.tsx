@@ -45,7 +45,7 @@ export default function EditCasePage() {
         
         // If case has taluka, set the selected taluka
         if (caseData.taluka) {
-          const taluka = data.find((t: any) => t.name === caseData.taluka);
+          const taluka = data.find((t: any) => t.name === caseData.taluka?.name);
           if (taluka) {
             setSelectedTaluka(taluka.id);
           }
@@ -75,7 +75,7 @@ export default function EditCasePage() {
         
         // If case has deh, set the selected deh
         if (caseData.deh) {
-          const deh = data.find((d: any) => d.name === caseData.deh);
+          const deh = data.find((d: any) => d.name === caseData.deh?.name);
           if (deh) {
             setSelectedDeh(deh.id);
           }
@@ -92,21 +92,21 @@ export default function EditCasePage() {
     const talukaId = e.target.value;
     setSelectedTaluka(talukaId);
     setSelectedDeh(''); // Reset deh when taluka changes
-    const selectedTalukaName = talukas.find(t => t.id === talukaId)?.name || '';
+    const selectedTaluka = talukas.find(t => t.id === talukaId)?.id || '';
     setCaseData(prev => ({
       ...prev,
-      taluka: selectedTalukaName,
-      deh: '' // Clear deh when taluka changes
+      talukaId: selectedTaluka,
+      dehId: '' // Clear deh when taluka changes
     }));
   };
 
   const handleDehChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const dehId = e.target.value;
     setSelectedDeh(dehId);
-    const selectedDehName = dehs.find(d => d.id === dehId)?.name || '';
+    const selectedDeh = dehs.find(d => d.id === dehId)?.id || '';
     setCaseData(prev => ({
       ...prev,
-      deh: selectedDehName
+      dehId: selectedDeh
     }));
   };
 

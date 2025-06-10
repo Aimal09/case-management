@@ -1667,10 +1667,12 @@ export namespace Prisma {
 
   export type TalukaCountOutputType = {
     dehs: number
+    Case: number
   }
 
   export type TalukaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     dehs?: boolean | TalukaCountOutputTypeCountDehsArgs
+    Case?: boolean | TalukaCountOutputTypeCountCaseArgs
   }
 
   // Custom InputTypes
@@ -1689,6 +1691,44 @@ export namespace Prisma {
    */
   export type TalukaCountOutputTypeCountDehsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DehWhereInput
+  }
+
+  /**
+   * TalukaCountOutputType without action
+   */
+  export type TalukaCountOutputTypeCountCaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CaseWhereInput
+  }
+
+
+  /**
+   * Count Type DehCountOutputType
+   */
+
+  export type DehCountOutputType = {
+    Case: number
+  }
+
+  export type DehCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Case?: boolean | DehCountOutputTypeCountCaseArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DehCountOutputType without action
+   */
+  export type DehCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DehCountOutputType
+     */
+    select?: DehCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DehCountOutputType without action
+   */
+  export type DehCountOutputTypeCountCaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CaseWhereInput
   }
 
 
@@ -1765,8 +1805,8 @@ export namespace Prisma {
     dateOfInstitution: Date | null
     nextDate: Date | null
     location: string | null
-    taluka: string | null
-    deh: string | null
+    talukaId: string | null
+    dehId: string | null
     description: string | null
     mukhtiarkarACReportUploaded: boolean | null
     mukhtiarkarACReportPath: string | null
@@ -1792,8 +1832,8 @@ export namespace Prisma {
     dateOfInstitution: Date | null
     nextDate: Date | null
     location: string | null
-    taluka: string | null
-    deh: string | null
+    talukaId: string | null
+    dehId: string | null
     description: string | null
     mukhtiarkarACReportUploaded: boolean | null
     mukhtiarkarACReportPath: string | null
@@ -1819,8 +1859,8 @@ export namespace Prisma {
     dateOfInstitution: number
     nextDate: number
     location: number
-    taluka: number
-    deh: number
+    talukaId: number
+    dehId: number
     description: number
     mukhtiarkarACReportUploaded: number
     mukhtiarkarACReportPath: number
@@ -1848,8 +1888,8 @@ export namespace Prisma {
     dateOfInstitution?: true
     nextDate?: true
     location?: true
-    taluka?: true
-    deh?: true
+    talukaId?: true
+    dehId?: true
     description?: true
     mukhtiarkarACReportUploaded?: true
     mukhtiarkarACReportPath?: true
@@ -1875,8 +1915,8 @@ export namespace Prisma {
     dateOfInstitution?: true
     nextDate?: true
     location?: true
-    taluka?: true
-    deh?: true
+    talukaId?: true
+    dehId?: true
     description?: true
     mukhtiarkarACReportUploaded?: true
     mukhtiarkarACReportPath?: true
@@ -1902,8 +1942,8 @@ export namespace Prisma {
     dateOfInstitution?: true
     nextDate?: true
     location?: true
-    taluka?: true
-    deh?: true
+    talukaId?: true
+    dehId?: true
     description?: true
     mukhtiarkarACReportUploaded?: true
     mukhtiarkarACReportPath?: true
@@ -2002,8 +2042,8 @@ export namespace Prisma {
     dateOfInstitution: Date | null
     nextDate: Date | null
     location: string | null
-    taluka: string | null
-    deh: string | null
+    talukaId: string | null
+    dehId: string | null
     description: string | null
     mukhtiarkarACReportUploaded: boolean
     mukhtiarkarACReportPath: string | null
@@ -2046,8 +2086,8 @@ export namespace Prisma {
     dateOfInstitution?: boolean
     nextDate?: boolean
     location?: boolean
-    taluka?: boolean
-    deh?: boolean
+    talukaId?: boolean
+    dehId?: boolean
     description?: boolean
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: boolean
@@ -2061,6 +2101,8 @@ export namespace Prisma {
     forwardedByName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    taluka?: boolean | Case$talukaArgs<ExtArgs>
+    deh?: boolean | Case$dehArgs<ExtArgs>
     forwardedToMukhtiarkar?: boolean | Case$forwardedToMukhtiarkarArgs<ExtArgs>
     reports?: boolean | Case$reportsArgs<ExtArgs>
     evidences?: boolean | Case$evidencesArgs<ExtArgs>
@@ -2081,8 +2123,8 @@ export namespace Prisma {
     dateOfInstitution?: boolean
     nextDate?: boolean
     location?: boolean
-    taluka?: boolean
-    deh?: boolean
+    talukaId?: boolean
+    dehId?: boolean
     description?: boolean
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: boolean
@@ -2098,8 +2140,10 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type CaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "title" | "caseType" | "status" | "priority" | "dateOfInstitution" | "nextDate" | "location" | "taluka" | "deh" | "description" | "mukhtiarkarACReportUploaded" | "mukhtiarkarACReportPath" | "evacueePropertyReportUploaded" | "evacueePropertyReportPath" | "barrageBranchReportUploaded" | "barrageBranchReportPath" | "newspaperPublicationUploaded" | "newspaperPublicationPath" | "forwardedToMukhtiarkarId" | "forwardedByName" | "createdAt" | "updatedAt", ExtArgs["result"]["case"]>
+  export type CaseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "title" | "caseType" | "status" | "priority" | "dateOfInstitution" | "nextDate" | "location" | "talukaId" | "dehId" | "description" | "mukhtiarkarACReportUploaded" | "mukhtiarkarACReportPath" | "evacueePropertyReportUploaded" | "evacueePropertyReportPath" | "barrageBranchReportUploaded" | "barrageBranchReportPath" | "newspaperPublicationUploaded" | "newspaperPublicationPath" | "forwardedToMukhtiarkarId" | "forwardedByName" | "createdAt" | "updatedAt", ExtArgs["result"]["case"]>
   export type CaseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    taluka?: boolean | Case$talukaArgs<ExtArgs>
+    deh?: boolean | Case$dehArgs<ExtArgs>
     forwardedToMukhtiarkar?: boolean | Case$forwardedToMukhtiarkarArgs<ExtArgs>
     reports?: boolean | Case$reportsArgs<ExtArgs>
     evidences?: boolean | Case$evidencesArgs<ExtArgs>
@@ -2111,6 +2155,8 @@ export namespace Prisma {
   export type $CasePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Case"
     objects: {
+      taluka: Prisma.$TalukaPayload<ExtArgs> | null
+      deh: Prisma.$DehPayload<ExtArgs> | null
       forwardedToMukhtiarkar: Prisma.$UserPayload<ExtArgs> | null
       reports: Prisma.$ReportPayload<ExtArgs>[]
       evidences: Prisma.$EvidencesPayload<ExtArgs>[]
@@ -2127,8 +2173,8 @@ export namespace Prisma {
       dateOfInstitution: Date | null
       nextDate: Date | null
       location: string | null
-      taluka: string | null
-      deh: string | null
+      talukaId: string | null
+      dehId: string | null
       description: string | null
       mukhtiarkarACReportUploaded: boolean
       mukhtiarkarACReportPath: string | null
@@ -2482,6 +2528,8 @@ export namespace Prisma {
    */
   export interface Prisma__CaseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    taluka<T extends Case$talukaArgs<ExtArgs> = {}>(args?: Subset<T, Case$talukaArgs<ExtArgs>>): Prisma__TalukaClient<$Result.GetResult<Prisma.$TalukaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    deh<T extends Case$dehArgs<ExtArgs> = {}>(args?: Subset<T, Case$dehArgs<ExtArgs>>): Prisma__DehClient<$Result.GetResult<Prisma.$DehPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     forwardedToMukhtiarkar<T extends Case$forwardedToMukhtiarkarArgs<ExtArgs> = {}>(args?: Subset<T, Case$forwardedToMukhtiarkarArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     reports<T extends Case$reportsArgs<ExtArgs> = {}>(args?: Subset<T, Case$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     evidences<T extends Case$evidencesArgs<ExtArgs> = {}>(args?: Subset<T, Case$evidencesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EvidencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2525,8 +2573,8 @@ export namespace Prisma {
     readonly dateOfInstitution: FieldRef<"Case", 'DateTime'>
     readonly nextDate: FieldRef<"Case", 'DateTime'>
     readonly location: FieldRef<"Case", 'String'>
-    readonly taluka: FieldRef<"Case", 'String'>
-    readonly deh: FieldRef<"Case", 'String'>
+    readonly talukaId: FieldRef<"Case", 'String'>
+    readonly dehId: FieldRef<"Case", 'String'>
     readonly description: FieldRef<"Case", 'String'>
     readonly mukhtiarkarACReportUploaded: FieldRef<"Case", 'Boolean'>
     readonly mukhtiarkarACReportPath: FieldRef<"Case", 'String'>
@@ -2880,6 +2928,44 @@ export namespace Prisma {
      * Limit how many Cases to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Case.taluka
+   */
+  export type Case$talukaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Taluka
+     */
+    select?: TalukaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Taluka
+     */
+    omit?: TalukaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TalukaInclude<ExtArgs> | null
+    where?: TalukaWhereInput
+  }
+
+  /**
+   * Case.deh
+   */
+  export type Case$dehArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Deh
+     */
+    select?: DehSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Deh
+     */
+    omit?: DehOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DehInclude<ExtArgs> | null
+    where?: DehWhereInput
   }
 
   /**
@@ -5957,6 +6043,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     dehs?: boolean | Taluka$dehsArgs<ExtArgs>
+    Case?: boolean | Taluka$CaseArgs<ExtArgs>
     _count?: boolean | TalukaCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taluka"]>
 
@@ -5972,6 +6059,7 @@ export namespace Prisma {
   export type TalukaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt", ExtArgs["result"]["taluka"]>
   export type TalukaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     dehs?: boolean | Taluka$dehsArgs<ExtArgs>
+    Case?: boolean | Taluka$CaseArgs<ExtArgs>
     _count?: boolean | TalukaCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5979,6 +6067,7 @@ export namespace Prisma {
     name: "Taluka"
     objects: {
       dehs: Prisma.$DehPayload<ExtArgs>[]
+      Case: Prisma.$CasePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6326,6 +6415,7 @@ export namespace Prisma {
   export interface Prisma__TalukaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     dehs<T extends Taluka$dehsArgs<ExtArgs> = {}>(args?: Subset<T, Taluka$dehsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DehPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Case<T extends Taluka$CaseArgs<ExtArgs> = {}>(args?: Subset<T, Taluka$CaseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6726,6 +6816,30 @@ export namespace Prisma {
   }
 
   /**
+   * Taluka.Case
+   */
+  export type Taluka$CaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Case
+     */
+    select?: CaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Case
+     */
+    omit?: CaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CaseInclude<ExtArgs> | null
+    where?: CaseWhereInput
+    orderBy?: CaseOrderByWithRelationInput | CaseOrderByWithRelationInput[]
+    cursor?: CaseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CaseScalarFieldEnum | CaseScalarFieldEnum[]
+  }
+
+  /**
    * Taluka without action
    */
   export type TalukaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6909,6 +7023,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     taluka?: boolean | TalukaDefaultArgs<ExtArgs>
+    Case?: boolean | Deh$CaseArgs<ExtArgs>
+    _count?: boolean | DehCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["deh"]>
 
 
@@ -6924,12 +7040,15 @@ export namespace Prisma {
   export type DehOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "talukaId" | "createdAt" | "updatedAt", ExtArgs["result"]["deh"]>
   export type DehInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     taluka?: boolean | TalukaDefaultArgs<ExtArgs>
+    Case?: boolean | Deh$CaseArgs<ExtArgs>
+    _count?: boolean | DehCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $DehPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Deh"
     objects: {
       taluka: Prisma.$TalukaPayload<ExtArgs>
+      Case: Prisma.$CasePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7278,6 +7397,7 @@ export namespace Prisma {
   export interface Prisma__DehClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     taluka<T extends TalukaDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TalukaDefaultArgs<ExtArgs>>): Prisma__TalukaClient<$Result.GetResult<Prisma.$TalukaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Case<T extends Deh$CaseArgs<ExtArgs> = {}>(args?: Subset<T, Deh$CaseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CasePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7652,6 +7772,30 @@ export namespace Prisma {
      * Limit how many Dehs to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Deh.Case
+   */
+  export type Deh$CaseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Case
+     */
+    select?: CaseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Case
+     */
+    omit?: CaseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CaseInclude<ExtArgs> | null
+    where?: CaseWhereInput
+    orderBy?: CaseOrderByWithRelationInput | CaseOrderByWithRelationInput[]
+    cursor?: CaseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CaseScalarFieldEnum | CaseScalarFieldEnum[]
   }
 
   /**
@@ -11563,8 +11707,8 @@ export namespace Prisma {
     dateOfInstitution: 'dateOfInstitution',
     nextDate: 'nextDate',
     location: 'location',
-    taluka: 'taluka',
-    deh: 'deh',
+    talukaId: 'talukaId',
+    dehId: 'dehId',
     description: 'description',
     mukhtiarkarACReportUploaded: 'mukhtiarkarACReportUploaded',
     mukhtiarkarACReportPath: 'mukhtiarkarACReportPath',
@@ -11717,8 +11861,8 @@ export namespace Prisma {
     status: 'status',
     priority: 'priority',
     location: 'location',
-    taluka: 'taluka',
-    deh: 'deh',
+    talukaId: 'talukaId',
+    dehId: 'dehId',
     description: 'description',
     mukhtiarkarACReportPath: 'mukhtiarkarACReportPath',
     evacueePropertyReportPath: 'evacueePropertyReportPath',
@@ -11870,8 +12014,8 @@ export namespace Prisma {
     dateOfInstitution?: DateTimeNullableFilter<"Case"> | Date | string | null
     nextDate?: DateTimeNullableFilter<"Case"> | Date | string | null
     location?: StringNullableFilter<"Case"> | string | null
-    taluka?: StringNullableFilter<"Case"> | string | null
-    deh?: StringNullableFilter<"Case"> | string | null
+    talukaId?: StringNullableFilter<"Case"> | string | null
+    dehId?: StringNullableFilter<"Case"> | string | null
     description?: StringNullableFilter<"Case"> | string | null
     mukhtiarkarACReportUploaded?: BoolFilter<"Case"> | boolean
     mukhtiarkarACReportPath?: StringNullableFilter<"Case"> | string | null
@@ -11885,6 +12029,8 @@ export namespace Prisma {
     forwardedByName?: StringNullableFilter<"Case"> | string | null
     createdAt?: DateTimeFilter<"Case"> | Date | string
     updatedAt?: DateTimeNullableFilter<"Case"> | Date | string | null
+    taluka?: XOR<TalukaNullableScalarRelationFilter, TalukaWhereInput> | null
+    deh?: XOR<DehNullableScalarRelationFilter, DehWhereInput> | null
     forwardedToMukhtiarkar?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     reports?: ReportListRelationFilter
     evidences?: EvidencesListRelationFilter
@@ -11902,8 +12048,8 @@ export namespace Prisma {
     dateOfInstitution?: SortOrderInput | SortOrder
     nextDate?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
-    taluka?: SortOrderInput | SortOrder
-    deh?: SortOrderInput | SortOrder
+    talukaId?: SortOrderInput | SortOrder
+    dehId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     mukhtiarkarACReportUploaded?: SortOrder
     mukhtiarkarACReportPath?: SortOrderInput | SortOrder
@@ -11917,6 +12063,8 @@ export namespace Prisma {
     forwardedByName?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
+    taluka?: TalukaOrderByWithRelationInput
+    deh?: DehOrderByWithRelationInput
     forwardedToMukhtiarkar?: UserOrderByWithRelationInput
     reports?: ReportOrderByRelationAggregateInput
     evidences?: EvidencesOrderByRelationAggregateInput
@@ -11938,8 +12086,8 @@ export namespace Prisma {
     dateOfInstitution?: DateTimeNullableFilter<"Case"> | Date | string | null
     nextDate?: DateTimeNullableFilter<"Case"> | Date | string | null
     location?: StringNullableFilter<"Case"> | string | null
-    taluka?: StringNullableFilter<"Case"> | string | null
-    deh?: StringNullableFilter<"Case"> | string | null
+    talukaId?: StringNullableFilter<"Case"> | string | null
+    dehId?: StringNullableFilter<"Case"> | string | null
     description?: StringNullableFilter<"Case"> | string | null
     mukhtiarkarACReportUploaded?: BoolFilter<"Case"> | boolean
     mukhtiarkarACReportPath?: StringNullableFilter<"Case"> | string | null
@@ -11953,6 +12101,8 @@ export namespace Prisma {
     forwardedByName?: StringNullableFilter<"Case"> | string | null
     createdAt?: DateTimeFilter<"Case"> | Date | string
     updatedAt?: DateTimeNullableFilter<"Case"> | Date | string | null
+    taluka?: XOR<TalukaNullableScalarRelationFilter, TalukaWhereInput> | null
+    deh?: XOR<DehNullableScalarRelationFilter, DehWhereInput> | null
     forwardedToMukhtiarkar?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     reports?: ReportListRelationFilter
     evidences?: EvidencesListRelationFilter
@@ -11970,8 +12120,8 @@ export namespace Prisma {
     dateOfInstitution?: SortOrderInput | SortOrder
     nextDate?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
-    taluka?: SortOrderInput | SortOrder
-    deh?: SortOrderInput | SortOrder
+    talukaId?: SortOrderInput | SortOrder
+    dehId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     mukhtiarkarACReportUploaded?: SortOrder
     mukhtiarkarACReportPath?: SortOrderInput | SortOrder
@@ -12003,8 +12153,8 @@ export namespace Prisma {
     dateOfInstitution?: DateTimeNullableWithAggregatesFilter<"Case"> | Date | string | null
     nextDate?: DateTimeNullableWithAggregatesFilter<"Case"> | Date | string | null
     location?: StringNullableWithAggregatesFilter<"Case"> | string | null
-    taluka?: StringNullableWithAggregatesFilter<"Case"> | string | null
-    deh?: StringNullableWithAggregatesFilter<"Case"> | string | null
+    talukaId?: StringNullableWithAggregatesFilter<"Case"> | string | null
+    dehId?: StringNullableWithAggregatesFilter<"Case"> | string | null
     description?: StringNullableWithAggregatesFilter<"Case"> | string | null
     mukhtiarkarACReportUploaded?: BoolWithAggregatesFilter<"Case"> | boolean
     mukhtiarkarACReportPath?: StringNullableWithAggregatesFilter<"Case"> | string | null
@@ -12214,6 +12364,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Taluka"> | Date | string
     updatedAt?: DateTimeFilter<"Taluka"> | Date | string
     dehs?: DehListRelationFilter
+    Case?: CaseListRelationFilter
   }
 
   export type TalukaOrderByWithRelationInput = {
@@ -12222,6 +12373,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     dehs?: DehOrderByRelationAggregateInput
+    Case?: CaseOrderByRelationAggregateInput
     _relevance?: TalukaOrderByRelevanceInput
   }
 
@@ -12234,6 +12386,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Taluka"> | Date | string
     updatedAt?: DateTimeFilter<"Taluka"> | Date | string
     dehs?: DehListRelationFilter
+    Case?: CaseListRelationFilter
   }, "id" | "name">
 
   export type TalukaOrderByWithAggregationInput = {
@@ -12266,6 +12419,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Deh"> | Date | string
     updatedAt?: DateTimeFilter<"Deh"> | Date | string
     taluka?: XOR<TalukaScalarRelationFilter, TalukaWhereInput>
+    Case?: CaseListRelationFilter
   }
 
   export type DehOrderByWithRelationInput = {
@@ -12275,6 +12429,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     taluka?: TalukaOrderByWithRelationInput
+    Case?: CaseOrderByRelationAggregateInput
     _relevance?: DehOrderByRelevanceInput
   }
 
@@ -12289,6 +12444,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Deh"> | Date | string
     updatedAt?: DateTimeFilter<"Deh"> | Date | string
     taluka?: XOR<TalukaScalarRelationFilter, TalukaWhereInput>
+    Case?: CaseListRelationFilter
   }, "id" | "name_talukaId">
 
   export type DehOrderByWithAggregationInput = {
@@ -12596,8 +12752,6 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -12610,6 +12764,8 @@ export namespace Prisma {
     forwardedByName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    taluka?: TalukaCreateNestedOneWithoutCaseInput
+    deh?: DehCreateNestedOneWithoutCaseInput
     forwardedToMukhtiarkar?: UserCreateNestedOneWithoutForwardedCasesInput
     reports?: ReportCreateNestedManyWithoutCaseInput
     evidences?: EvidencesCreateNestedManyWithoutCaseInput
@@ -12627,8 +12783,8 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
+    talukaId?: string | null
+    dehId?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -12658,8 +12814,6 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12672,6 +12826,8 @@ export namespace Prisma {
     forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taluka?: TalukaUpdateOneWithoutCaseNestedInput
+    deh?: DehUpdateOneWithoutCaseNestedInput
     forwardedToMukhtiarkar?: UserUpdateOneWithoutForwardedCasesNestedInput
     reports?: ReportUpdateManyWithoutCaseNestedInput
     evidences?: EvidencesUpdateManyWithoutCaseNestedInput
@@ -12689,8 +12845,8 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12720,8 +12876,8 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
+    talukaId?: string | null
+    dehId?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -12747,8 +12903,6 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12773,8 +12927,8 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12990,6 +13144,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     dehs?: DehCreateNestedManyWithoutTalukaInput
+    Case?: CaseCreateNestedManyWithoutTalukaInput
   }
 
   export type TalukaUncheckedCreateInput = {
@@ -12998,6 +13153,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     dehs?: DehUncheckedCreateNestedManyWithoutTalukaInput
+    Case?: CaseUncheckedCreateNestedManyWithoutTalukaInput
   }
 
   export type TalukaUpdateInput = {
@@ -13006,6 +13162,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dehs?: DehUpdateManyWithoutTalukaNestedInput
+    Case?: CaseUpdateManyWithoutTalukaNestedInput
   }
 
   export type TalukaUncheckedUpdateInput = {
@@ -13014,6 +13171,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dehs?: DehUncheckedUpdateManyWithoutTalukaNestedInput
+    Case?: CaseUncheckedUpdateManyWithoutTalukaNestedInput
   }
 
   export type TalukaCreateManyInput = {
@@ -13043,6 +13201,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     taluka: TalukaCreateNestedOneWithoutDehsInput
+    Case?: CaseCreateNestedManyWithoutDehInput
   }
 
   export type DehUncheckedCreateInput = {
@@ -13051,6 +13210,7 @@ export namespace Prisma {
     talukaId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    Case?: CaseUncheckedCreateNestedManyWithoutDehInput
   }
 
   export type DehUpdateInput = {
@@ -13059,6 +13219,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     taluka?: TalukaUpdateOneRequiredWithoutDehsNestedInput
+    Case?: CaseUpdateManyWithoutDehNestedInput
   }
 
   export type DehUncheckedUpdateInput = {
@@ -13067,6 +13228,7 @@ export namespace Prisma {
     talukaId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Case?: CaseUncheckedUpdateManyWithoutDehNestedInput
   }
 
   export type DehCreateManyInput = {
@@ -13437,6 +13599,16 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type TalukaNullableScalarRelationFilter = {
+    is?: TalukaWhereInput | null
+    isNot?: TalukaWhereInput | null
+  }
+
+  export type DehNullableScalarRelationFilter = {
+    is?: DehWhereInput | null
+    isNot?: DehWhereInput | null
+  }
+
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
@@ -13503,8 +13675,8 @@ export namespace Prisma {
     dateOfInstitution?: SortOrder
     nextDate?: SortOrder
     location?: SortOrder
-    taluka?: SortOrder
-    deh?: SortOrder
+    talukaId?: SortOrder
+    dehId?: SortOrder
     description?: SortOrder
     mukhtiarkarACReportUploaded?: SortOrder
     mukhtiarkarACReportPath?: SortOrder
@@ -13530,8 +13702,8 @@ export namespace Prisma {
     dateOfInstitution?: SortOrder
     nextDate?: SortOrder
     location?: SortOrder
-    taluka?: SortOrder
-    deh?: SortOrder
+    talukaId?: SortOrder
+    dehId?: SortOrder
     description?: SortOrder
     mukhtiarkarACReportUploaded?: SortOrder
     mukhtiarkarACReportPath?: SortOrder
@@ -13557,8 +13729,8 @@ export namespace Prisma {
     dateOfInstitution?: SortOrder
     nextDate?: SortOrder
     location?: SortOrder
-    taluka?: SortOrder
-    deh?: SortOrder
+    talukaId?: SortOrder
+    dehId?: SortOrder
     description?: SortOrder
     mukhtiarkarACReportUploaded?: SortOrder
     mukhtiarkarACReportPath?: SortOrder
@@ -13759,7 +13931,17 @@ export namespace Prisma {
     none?: DehWhereInput
   }
 
+  export type CaseListRelationFilter = {
+    every?: CaseWhereInput
+    some?: CaseWhereInput
+    none?: CaseWhereInput
+  }
+
   export type DehOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CaseOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13828,16 +14010,6 @@ export namespace Prisma {
     talukaId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type CaseListRelationFilter = {
-    every?: CaseWhereInput
-    some?: CaseWhereInput
-    none?: CaseWhereInput
-  }
-
-  export type CaseOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type UserOrderByRelevanceInput = {
@@ -13989,6 +14161,18 @@ export namespace Prisma {
     message?: SortOrder
   }
 
+  export type TalukaCreateNestedOneWithoutCaseInput = {
+    create?: XOR<TalukaCreateWithoutCaseInput, TalukaUncheckedCreateWithoutCaseInput>
+    connectOrCreate?: TalukaCreateOrConnectWithoutCaseInput
+    connect?: TalukaWhereUniqueInput
+  }
+
+  export type DehCreateNestedOneWithoutCaseInput = {
+    create?: XOR<DehCreateWithoutCaseInput, DehUncheckedCreateWithoutCaseInput>
+    connectOrCreate?: DehCreateOrConnectWithoutCaseInput
+    connect?: DehWhereUniqueInput
+  }
+
   export type UserCreateNestedOneWithoutForwardedCasesInput = {
     create?: XOR<UserCreateWithoutForwardedCasesInput, UserUncheckedCreateWithoutForwardedCasesInput>
     connectOrCreate?: UserCreateOrConnectWithoutForwardedCasesInput
@@ -14069,6 +14253,26 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type TalukaUpdateOneWithoutCaseNestedInput = {
+    create?: XOR<TalukaCreateWithoutCaseInput, TalukaUncheckedCreateWithoutCaseInput>
+    connectOrCreate?: TalukaCreateOrConnectWithoutCaseInput
+    upsert?: TalukaUpsertWithoutCaseInput
+    disconnect?: TalukaWhereInput | boolean
+    delete?: TalukaWhereInput | boolean
+    connect?: TalukaWhereUniqueInput
+    update?: XOR<XOR<TalukaUpdateToOneWithWhereWithoutCaseInput, TalukaUpdateWithoutCaseInput>, TalukaUncheckedUpdateWithoutCaseInput>
+  }
+
+  export type DehUpdateOneWithoutCaseNestedInput = {
+    create?: XOR<DehCreateWithoutCaseInput, DehUncheckedCreateWithoutCaseInput>
+    connectOrCreate?: DehCreateOrConnectWithoutCaseInput
+    upsert?: DehUpsertWithoutCaseInput
+    disconnect?: DehWhereInput | boolean
+    delete?: DehWhereInput | boolean
+    connect?: DehWhereUniqueInput
+    update?: XOR<XOR<DehUpdateToOneWithWhereWithoutCaseInput, DehUpdateWithoutCaseInput>, DehUncheckedUpdateWithoutCaseInput>
   }
 
   export type UserUpdateOneWithoutForwardedCasesNestedInput = {
@@ -14228,11 +14432,25 @@ export namespace Prisma {
     connect?: DehWhereUniqueInput | DehWhereUniqueInput[]
   }
 
+  export type CaseCreateNestedManyWithoutTalukaInput = {
+    create?: XOR<CaseCreateWithoutTalukaInput, CaseUncheckedCreateWithoutTalukaInput> | CaseCreateWithoutTalukaInput[] | CaseUncheckedCreateWithoutTalukaInput[]
+    connectOrCreate?: CaseCreateOrConnectWithoutTalukaInput | CaseCreateOrConnectWithoutTalukaInput[]
+    createMany?: CaseCreateManyTalukaInputEnvelope
+    connect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+  }
+
   export type DehUncheckedCreateNestedManyWithoutTalukaInput = {
     create?: XOR<DehCreateWithoutTalukaInput, DehUncheckedCreateWithoutTalukaInput> | DehCreateWithoutTalukaInput[] | DehUncheckedCreateWithoutTalukaInput[]
     connectOrCreate?: DehCreateOrConnectWithoutTalukaInput | DehCreateOrConnectWithoutTalukaInput[]
     createMany?: DehCreateManyTalukaInputEnvelope
     connect?: DehWhereUniqueInput | DehWhereUniqueInput[]
+  }
+
+  export type CaseUncheckedCreateNestedManyWithoutTalukaInput = {
+    create?: XOR<CaseCreateWithoutTalukaInput, CaseUncheckedCreateWithoutTalukaInput> | CaseCreateWithoutTalukaInput[] | CaseUncheckedCreateWithoutTalukaInput[]
+    connectOrCreate?: CaseCreateOrConnectWithoutTalukaInput | CaseCreateOrConnectWithoutTalukaInput[]
+    createMany?: CaseCreateManyTalukaInputEnvelope
+    connect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
   }
 
   export type DehUpdateManyWithoutTalukaNestedInput = {
@@ -14249,6 +14467,20 @@ export namespace Prisma {
     deleteMany?: DehScalarWhereInput | DehScalarWhereInput[]
   }
 
+  export type CaseUpdateManyWithoutTalukaNestedInput = {
+    create?: XOR<CaseCreateWithoutTalukaInput, CaseUncheckedCreateWithoutTalukaInput> | CaseCreateWithoutTalukaInput[] | CaseUncheckedCreateWithoutTalukaInput[]
+    connectOrCreate?: CaseCreateOrConnectWithoutTalukaInput | CaseCreateOrConnectWithoutTalukaInput[]
+    upsert?: CaseUpsertWithWhereUniqueWithoutTalukaInput | CaseUpsertWithWhereUniqueWithoutTalukaInput[]
+    createMany?: CaseCreateManyTalukaInputEnvelope
+    set?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    disconnect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    delete?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    connect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    update?: CaseUpdateWithWhereUniqueWithoutTalukaInput | CaseUpdateWithWhereUniqueWithoutTalukaInput[]
+    updateMany?: CaseUpdateManyWithWhereWithoutTalukaInput | CaseUpdateManyWithWhereWithoutTalukaInput[]
+    deleteMany?: CaseScalarWhereInput | CaseScalarWhereInput[]
+  }
+
   export type DehUncheckedUpdateManyWithoutTalukaNestedInput = {
     create?: XOR<DehCreateWithoutTalukaInput, DehUncheckedCreateWithoutTalukaInput> | DehCreateWithoutTalukaInput[] | DehUncheckedCreateWithoutTalukaInput[]
     connectOrCreate?: DehCreateOrConnectWithoutTalukaInput | DehCreateOrConnectWithoutTalukaInput[]
@@ -14263,10 +14495,38 @@ export namespace Prisma {
     deleteMany?: DehScalarWhereInput | DehScalarWhereInput[]
   }
 
+  export type CaseUncheckedUpdateManyWithoutTalukaNestedInput = {
+    create?: XOR<CaseCreateWithoutTalukaInput, CaseUncheckedCreateWithoutTalukaInput> | CaseCreateWithoutTalukaInput[] | CaseUncheckedCreateWithoutTalukaInput[]
+    connectOrCreate?: CaseCreateOrConnectWithoutTalukaInput | CaseCreateOrConnectWithoutTalukaInput[]
+    upsert?: CaseUpsertWithWhereUniqueWithoutTalukaInput | CaseUpsertWithWhereUniqueWithoutTalukaInput[]
+    createMany?: CaseCreateManyTalukaInputEnvelope
+    set?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    disconnect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    delete?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    connect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    update?: CaseUpdateWithWhereUniqueWithoutTalukaInput | CaseUpdateWithWhereUniqueWithoutTalukaInput[]
+    updateMany?: CaseUpdateManyWithWhereWithoutTalukaInput | CaseUpdateManyWithWhereWithoutTalukaInput[]
+    deleteMany?: CaseScalarWhereInput | CaseScalarWhereInput[]
+  }
+
   export type TalukaCreateNestedOneWithoutDehsInput = {
     create?: XOR<TalukaCreateWithoutDehsInput, TalukaUncheckedCreateWithoutDehsInput>
     connectOrCreate?: TalukaCreateOrConnectWithoutDehsInput
     connect?: TalukaWhereUniqueInput
+  }
+
+  export type CaseCreateNestedManyWithoutDehInput = {
+    create?: XOR<CaseCreateWithoutDehInput, CaseUncheckedCreateWithoutDehInput> | CaseCreateWithoutDehInput[] | CaseUncheckedCreateWithoutDehInput[]
+    connectOrCreate?: CaseCreateOrConnectWithoutDehInput | CaseCreateOrConnectWithoutDehInput[]
+    createMany?: CaseCreateManyDehInputEnvelope
+    connect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+  }
+
+  export type CaseUncheckedCreateNestedManyWithoutDehInput = {
+    create?: XOR<CaseCreateWithoutDehInput, CaseUncheckedCreateWithoutDehInput> | CaseCreateWithoutDehInput[] | CaseUncheckedCreateWithoutDehInput[]
+    connectOrCreate?: CaseCreateOrConnectWithoutDehInput | CaseCreateOrConnectWithoutDehInput[]
+    createMany?: CaseCreateManyDehInputEnvelope
+    connect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
   }
 
   export type TalukaUpdateOneRequiredWithoutDehsNestedInput = {
@@ -14275,6 +14535,34 @@ export namespace Prisma {
     upsert?: TalukaUpsertWithoutDehsInput
     connect?: TalukaWhereUniqueInput
     update?: XOR<XOR<TalukaUpdateToOneWithWhereWithoutDehsInput, TalukaUpdateWithoutDehsInput>, TalukaUncheckedUpdateWithoutDehsInput>
+  }
+
+  export type CaseUpdateManyWithoutDehNestedInput = {
+    create?: XOR<CaseCreateWithoutDehInput, CaseUncheckedCreateWithoutDehInput> | CaseCreateWithoutDehInput[] | CaseUncheckedCreateWithoutDehInput[]
+    connectOrCreate?: CaseCreateOrConnectWithoutDehInput | CaseCreateOrConnectWithoutDehInput[]
+    upsert?: CaseUpsertWithWhereUniqueWithoutDehInput | CaseUpsertWithWhereUniqueWithoutDehInput[]
+    createMany?: CaseCreateManyDehInputEnvelope
+    set?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    disconnect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    delete?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    connect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    update?: CaseUpdateWithWhereUniqueWithoutDehInput | CaseUpdateWithWhereUniqueWithoutDehInput[]
+    updateMany?: CaseUpdateManyWithWhereWithoutDehInput | CaseUpdateManyWithWhereWithoutDehInput[]
+    deleteMany?: CaseScalarWhereInput | CaseScalarWhereInput[]
+  }
+
+  export type CaseUncheckedUpdateManyWithoutDehNestedInput = {
+    create?: XOR<CaseCreateWithoutDehInput, CaseUncheckedCreateWithoutDehInput> | CaseCreateWithoutDehInput[] | CaseUncheckedCreateWithoutDehInput[]
+    connectOrCreate?: CaseCreateOrConnectWithoutDehInput | CaseCreateOrConnectWithoutDehInput[]
+    upsert?: CaseUpsertWithWhereUniqueWithoutDehInput | CaseUpsertWithWhereUniqueWithoutDehInput[]
+    createMany?: CaseCreateManyDehInputEnvelope
+    set?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    disconnect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    delete?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    connect?: CaseWhereUniqueInput | CaseWhereUniqueInput[]
+    update?: CaseUpdateWithWhereUniqueWithoutDehInput | CaseUpdateWithWhereUniqueWithoutDehInput[]
+    updateMany?: CaseUpdateManyWithWhereWithoutDehInput | CaseUpdateManyWithWhereWithoutDehInput[]
+    deleteMany?: CaseScalarWhereInput | CaseScalarWhereInput[]
   }
 
   export type UserCasesCreateNestedManyWithoutUserInput = {
@@ -14612,6 +14900,48 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type TalukaCreateWithoutCaseInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dehs?: DehCreateNestedManyWithoutTalukaInput
+  }
+
+  export type TalukaUncheckedCreateWithoutCaseInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dehs?: DehUncheckedCreateNestedManyWithoutTalukaInput
+  }
+
+  export type TalukaCreateOrConnectWithoutCaseInput = {
+    where: TalukaWhereUniqueInput
+    create: XOR<TalukaCreateWithoutCaseInput, TalukaUncheckedCreateWithoutCaseInput>
+  }
+
+  export type DehCreateWithoutCaseInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    taluka: TalukaCreateNestedOneWithoutDehsInput
+  }
+
+  export type DehUncheckedCreateWithoutCaseInput = {
+    id?: string
+    name: string
+    talukaId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DehCreateOrConnectWithoutCaseInput = {
+    where: DehWhereUniqueInput
+    create: XOR<DehCreateWithoutCaseInput, DehUncheckedCreateWithoutCaseInput>
+  }
+
   export type UserCreateWithoutForwardedCasesInput = {
     id?: string
     name: string
@@ -14759,6 +15089,60 @@ export namespace Prisma {
   export type UserCasesCreateManyCaseInputEnvelope = {
     data: UserCasesCreateManyCaseInput | UserCasesCreateManyCaseInput[]
     skipDuplicates?: boolean
+  }
+
+  export type TalukaUpsertWithoutCaseInput = {
+    update: XOR<TalukaUpdateWithoutCaseInput, TalukaUncheckedUpdateWithoutCaseInput>
+    create: XOR<TalukaCreateWithoutCaseInput, TalukaUncheckedCreateWithoutCaseInput>
+    where?: TalukaWhereInput
+  }
+
+  export type TalukaUpdateToOneWithWhereWithoutCaseInput = {
+    where?: TalukaWhereInput
+    data: XOR<TalukaUpdateWithoutCaseInput, TalukaUncheckedUpdateWithoutCaseInput>
+  }
+
+  export type TalukaUpdateWithoutCaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dehs?: DehUpdateManyWithoutTalukaNestedInput
+  }
+
+  export type TalukaUncheckedUpdateWithoutCaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dehs?: DehUncheckedUpdateManyWithoutTalukaNestedInput
+  }
+
+  export type DehUpsertWithoutCaseInput = {
+    update: XOR<DehUpdateWithoutCaseInput, DehUncheckedUpdateWithoutCaseInput>
+    create: XOR<DehCreateWithoutCaseInput, DehUncheckedCreateWithoutCaseInput>
+    where?: DehWhereInput
+  }
+
+  export type DehUpdateToOneWithWhereWithoutCaseInput = {
+    where?: DehWhereInput
+    data: XOR<DehUpdateWithoutCaseInput, DehUncheckedUpdateWithoutCaseInput>
+  }
+
+  export type DehUpdateWithoutCaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    taluka?: TalukaUpdateOneRequiredWithoutDehsNestedInput
+  }
+
+  export type DehUncheckedUpdateWithoutCaseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    talukaId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUpsertWithoutForwardedCasesInput = {
@@ -14928,8 +15312,6 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -14942,6 +15324,8 @@ export namespace Prisma {
     forwardedByName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    taluka?: TalukaCreateNestedOneWithoutCaseInput
+    deh?: DehCreateNestedOneWithoutCaseInput
     forwardedToMukhtiarkar?: UserCreateNestedOneWithoutForwardedCasesInput
     reports?: ReportCreateNestedManyWithoutCaseInput
     notes?: NotesCreateNestedManyWithoutCaseInput
@@ -14958,8 +15342,8 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
+    talukaId?: string | null
+    dehId?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15004,8 +15388,6 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15018,6 +15400,8 @@ export namespace Prisma {
     forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taluka?: TalukaUpdateOneWithoutCaseNestedInput
+    deh?: DehUpdateOneWithoutCaseNestedInput
     forwardedToMukhtiarkar?: UserUpdateOneWithoutForwardedCasesNestedInput
     reports?: ReportUpdateManyWithoutCaseNestedInput
     notes?: NotesUpdateManyWithoutCaseNestedInput
@@ -15034,8 +15418,8 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15064,8 +15448,6 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15078,6 +15460,8 @@ export namespace Prisma {
     forwardedByName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    taluka?: TalukaCreateNestedOneWithoutCaseInput
+    deh?: DehCreateNestedOneWithoutCaseInput
     forwardedToMukhtiarkar?: UserCreateNestedOneWithoutForwardedCasesInput
     reports?: ReportCreateNestedManyWithoutCaseInput
     evidences?: EvidencesCreateNestedManyWithoutCaseInput
@@ -15094,8 +15478,8 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
+    talukaId?: string | null
+    dehId?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15140,8 +15524,6 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15154,6 +15536,8 @@ export namespace Prisma {
     forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taluka?: TalukaUpdateOneWithoutCaseNestedInput
+    deh?: DehUpdateOneWithoutCaseNestedInput
     forwardedToMukhtiarkar?: UserUpdateOneWithoutForwardedCasesNestedInput
     reports?: ReportUpdateManyWithoutCaseNestedInput
     evidences?: EvidencesUpdateManyWithoutCaseNestedInput
@@ -15170,8 +15554,8 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15195,6 +15579,7 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    Case?: CaseCreateNestedManyWithoutDehInput
   }
 
   export type DehUncheckedCreateWithoutTalukaInput = {
@@ -15202,6 +15587,7 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    Case?: CaseUncheckedCreateNestedManyWithoutDehInput
   }
 
   export type DehCreateOrConnectWithoutTalukaInput = {
@@ -15211,6 +15597,76 @@ export namespace Prisma {
 
   export type DehCreateManyTalukaInputEnvelope = {
     data: DehCreateManyTalukaInput | DehCreateManyTalukaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CaseCreateWithoutTalukaInput = {
+    id?: string
+    code: string
+    title?: string | null
+    caseType?: string | null
+    status?: string | null
+    priority?: string | null
+    dateOfInstitution?: Date | string | null
+    nextDate?: Date | string | null
+    location?: string | null
+    description?: string | null
+    mukhtiarkarACReportUploaded?: boolean
+    mukhtiarkarACReportPath?: string | null
+    evacueePropertyReportUploaded?: boolean
+    evacueePropertyReportPath?: string | null
+    barrageBranchReportUploaded?: boolean
+    barrageBranchReportPath?: string | null
+    newspaperPublicationUploaded?: boolean
+    newspaperPublicationPath?: string | null
+    forwardedByName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    deh?: DehCreateNestedOneWithoutCaseInput
+    forwardedToMukhtiarkar?: UserCreateNestedOneWithoutForwardedCasesInput
+    reports?: ReportCreateNestedManyWithoutCaseInput
+    evidences?: EvidencesCreateNestedManyWithoutCaseInput
+    notes?: NotesCreateNestedManyWithoutCaseInput
+    userCases?: UserCasesCreateNestedManyWithoutCaseInput
+  }
+
+  export type CaseUncheckedCreateWithoutTalukaInput = {
+    id?: string
+    code: string
+    title?: string | null
+    caseType?: string | null
+    status?: string | null
+    priority?: string | null
+    dateOfInstitution?: Date | string | null
+    nextDate?: Date | string | null
+    location?: string | null
+    dehId?: string | null
+    description?: string | null
+    mukhtiarkarACReportUploaded?: boolean
+    mukhtiarkarACReportPath?: string | null
+    evacueePropertyReportUploaded?: boolean
+    evacueePropertyReportPath?: string | null
+    barrageBranchReportUploaded?: boolean
+    barrageBranchReportPath?: string | null
+    newspaperPublicationUploaded?: boolean
+    newspaperPublicationPath?: string | null
+    forwardedToMukhtiarkarId?: string | null
+    forwardedByName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    reports?: ReportUncheckedCreateNestedManyWithoutCaseInput
+    evidences?: EvidencesUncheckedCreateNestedManyWithoutCaseInput
+    notes?: NotesUncheckedCreateNestedManyWithoutCaseInput
+    userCases?: UserCasesUncheckedCreateNestedManyWithoutCaseInput
+  }
+
+  export type CaseCreateOrConnectWithoutTalukaInput = {
+    where: CaseWhereUniqueInput
+    create: XOR<CaseCreateWithoutTalukaInput, CaseUncheckedCreateWithoutTalukaInput>
+  }
+
+  export type CaseCreateManyTalukaInputEnvelope = {
+    data: CaseCreateManyTalukaInput | CaseCreateManyTalukaInput[]
     skipDuplicates?: boolean
   }
 
@@ -15241,11 +15697,58 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Deh"> | Date | string
   }
 
+  export type CaseUpsertWithWhereUniqueWithoutTalukaInput = {
+    where: CaseWhereUniqueInput
+    update: XOR<CaseUpdateWithoutTalukaInput, CaseUncheckedUpdateWithoutTalukaInput>
+    create: XOR<CaseCreateWithoutTalukaInput, CaseUncheckedCreateWithoutTalukaInput>
+  }
+
+  export type CaseUpdateWithWhereUniqueWithoutTalukaInput = {
+    where: CaseWhereUniqueInput
+    data: XOR<CaseUpdateWithoutTalukaInput, CaseUncheckedUpdateWithoutTalukaInput>
+  }
+
+  export type CaseUpdateManyWithWhereWithoutTalukaInput = {
+    where: CaseScalarWhereInput
+    data: XOR<CaseUpdateManyMutationInput, CaseUncheckedUpdateManyWithoutTalukaInput>
+  }
+
+  export type CaseScalarWhereInput = {
+    AND?: CaseScalarWhereInput | CaseScalarWhereInput[]
+    OR?: CaseScalarWhereInput[]
+    NOT?: CaseScalarWhereInput | CaseScalarWhereInput[]
+    id?: StringFilter<"Case"> | string
+    code?: StringFilter<"Case"> | string
+    title?: StringNullableFilter<"Case"> | string | null
+    caseType?: StringNullableFilter<"Case"> | string | null
+    status?: StringNullableFilter<"Case"> | string | null
+    priority?: StringNullableFilter<"Case"> | string | null
+    dateOfInstitution?: DateTimeNullableFilter<"Case"> | Date | string | null
+    nextDate?: DateTimeNullableFilter<"Case"> | Date | string | null
+    location?: StringNullableFilter<"Case"> | string | null
+    talukaId?: StringNullableFilter<"Case"> | string | null
+    dehId?: StringNullableFilter<"Case"> | string | null
+    description?: StringNullableFilter<"Case"> | string | null
+    mukhtiarkarACReportUploaded?: BoolFilter<"Case"> | boolean
+    mukhtiarkarACReportPath?: StringNullableFilter<"Case"> | string | null
+    evacueePropertyReportUploaded?: BoolFilter<"Case"> | boolean
+    evacueePropertyReportPath?: StringNullableFilter<"Case"> | string | null
+    barrageBranchReportUploaded?: BoolFilter<"Case"> | boolean
+    barrageBranchReportPath?: StringNullableFilter<"Case"> | string | null
+    newspaperPublicationUploaded?: BoolFilter<"Case"> | boolean
+    newspaperPublicationPath?: StringNullableFilter<"Case"> | string | null
+    forwardedToMukhtiarkarId?: StringNullableFilter<"Case"> | string | null
+    forwardedByName?: StringNullableFilter<"Case"> | string | null
+    createdAt?: DateTimeFilter<"Case"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"Case"> | Date | string | null
+  }
+
   export type TalukaCreateWithoutDehsInput = {
     id?: string
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    Case?: CaseCreateNestedManyWithoutTalukaInput
   }
 
   export type TalukaUncheckedCreateWithoutDehsInput = {
@@ -15253,11 +15756,82 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    Case?: CaseUncheckedCreateNestedManyWithoutTalukaInput
   }
 
   export type TalukaCreateOrConnectWithoutDehsInput = {
     where: TalukaWhereUniqueInput
     create: XOR<TalukaCreateWithoutDehsInput, TalukaUncheckedCreateWithoutDehsInput>
+  }
+
+  export type CaseCreateWithoutDehInput = {
+    id?: string
+    code: string
+    title?: string | null
+    caseType?: string | null
+    status?: string | null
+    priority?: string | null
+    dateOfInstitution?: Date | string | null
+    nextDate?: Date | string | null
+    location?: string | null
+    description?: string | null
+    mukhtiarkarACReportUploaded?: boolean
+    mukhtiarkarACReportPath?: string | null
+    evacueePropertyReportUploaded?: boolean
+    evacueePropertyReportPath?: string | null
+    barrageBranchReportUploaded?: boolean
+    barrageBranchReportPath?: string | null
+    newspaperPublicationUploaded?: boolean
+    newspaperPublicationPath?: string | null
+    forwardedByName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    taluka?: TalukaCreateNestedOneWithoutCaseInput
+    forwardedToMukhtiarkar?: UserCreateNestedOneWithoutForwardedCasesInput
+    reports?: ReportCreateNestedManyWithoutCaseInput
+    evidences?: EvidencesCreateNestedManyWithoutCaseInput
+    notes?: NotesCreateNestedManyWithoutCaseInput
+    userCases?: UserCasesCreateNestedManyWithoutCaseInput
+  }
+
+  export type CaseUncheckedCreateWithoutDehInput = {
+    id?: string
+    code: string
+    title?: string | null
+    caseType?: string | null
+    status?: string | null
+    priority?: string | null
+    dateOfInstitution?: Date | string | null
+    nextDate?: Date | string | null
+    location?: string | null
+    talukaId?: string | null
+    description?: string | null
+    mukhtiarkarACReportUploaded?: boolean
+    mukhtiarkarACReportPath?: string | null
+    evacueePropertyReportUploaded?: boolean
+    evacueePropertyReportPath?: string | null
+    barrageBranchReportUploaded?: boolean
+    barrageBranchReportPath?: string | null
+    newspaperPublicationUploaded?: boolean
+    newspaperPublicationPath?: string | null
+    forwardedToMukhtiarkarId?: string | null
+    forwardedByName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    reports?: ReportUncheckedCreateNestedManyWithoutCaseInput
+    evidences?: EvidencesUncheckedCreateNestedManyWithoutCaseInput
+    notes?: NotesUncheckedCreateNestedManyWithoutCaseInput
+    userCases?: UserCasesUncheckedCreateNestedManyWithoutCaseInput
+  }
+
+  export type CaseCreateOrConnectWithoutDehInput = {
+    where: CaseWhereUniqueInput
+    create: XOR<CaseCreateWithoutDehInput, CaseUncheckedCreateWithoutDehInput>
+  }
+
+  export type CaseCreateManyDehInputEnvelope = {
+    data: CaseCreateManyDehInput | CaseCreateManyDehInput[]
+    skipDuplicates?: boolean
   }
 
   export type TalukaUpsertWithoutDehsInput = {
@@ -15276,6 +15850,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Case?: CaseUpdateManyWithoutTalukaNestedInput
   }
 
   export type TalukaUncheckedUpdateWithoutDehsInput = {
@@ -15283,6 +15858,23 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Case?: CaseUncheckedUpdateManyWithoutTalukaNestedInput
+  }
+
+  export type CaseUpsertWithWhereUniqueWithoutDehInput = {
+    where: CaseWhereUniqueInput
+    update: XOR<CaseUpdateWithoutDehInput, CaseUncheckedUpdateWithoutDehInput>
+    create: XOR<CaseCreateWithoutDehInput, CaseUncheckedCreateWithoutDehInput>
+  }
+
+  export type CaseUpdateWithWhereUniqueWithoutDehInput = {
+    where: CaseWhereUniqueInput
+    data: XOR<CaseUpdateWithoutDehInput, CaseUncheckedUpdateWithoutDehInput>
+  }
+
+  export type CaseUpdateManyWithWhereWithoutDehInput = {
+    where: CaseScalarWhereInput
+    data: XOR<CaseUpdateManyMutationInput, CaseUncheckedUpdateManyWithoutDehInput>
   }
 
   export type UserCasesCreateWithoutUserInput = {
@@ -15351,8 +15943,6 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15365,6 +15955,8 @@ export namespace Prisma {
     forwardedByName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    taluka?: TalukaCreateNestedOneWithoutCaseInput
+    deh?: DehCreateNestedOneWithoutCaseInput
     reports?: ReportCreateNestedManyWithoutCaseInput
     evidences?: EvidencesCreateNestedManyWithoutCaseInput
     notes?: NotesCreateNestedManyWithoutCaseInput
@@ -15381,8 +15973,8 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
+    talukaId?: string | null
+    dehId?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15459,36 +16051,6 @@ export namespace Prisma {
     data: XOR<CaseUpdateManyMutationInput, CaseUncheckedUpdateManyWithoutForwardedToMukhtiarkarInput>
   }
 
-  export type CaseScalarWhereInput = {
-    AND?: CaseScalarWhereInput | CaseScalarWhereInput[]
-    OR?: CaseScalarWhereInput[]
-    NOT?: CaseScalarWhereInput | CaseScalarWhereInput[]
-    id?: StringFilter<"Case"> | string
-    code?: StringFilter<"Case"> | string
-    title?: StringNullableFilter<"Case"> | string | null
-    caseType?: StringNullableFilter<"Case"> | string | null
-    status?: StringNullableFilter<"Case"> | string | null
-    priority?: StringNullableFilter<"Case"> | string | null
-    dateOfInstitution?: DateTimeNullableFilter<"Case"> | Date | string | null
-    nextDate?: DateTimeNullableFilter<"Case"> | Date | string | null
-    location?: StringNullableFilter<"Case"> | string | null
-    taluka?: StringNullableFilter<"Case"> | string | null
-    deh?: StringNullableFilter<"Case"> | string | null
-    description?: StringNullableFilter<"Case"> | string | null
-    mukhtiarkarACReportUploaded?: BoolFilter<"Case"> | boolean
-    mukhtiarkarACReportPath?: StringNullableFilter<"Case"> | string | null
-    evacueePropertyReportUploaded?: BoolFilter<"Case"> | boolean
-    evacueePropertyReportPath?: StringNullableFilter<"Case"> | string | null
-    barrageBranchReportUploaded?: BoolFilter<"Case"> | boolean
-    barrageBranchReportPath?: StringNullableFilter<"Case"> | string | null
-    newspaperPublicationUploaded?: BoolFilter<"Case"> | boolean
-    newspaperPublicationPath?: StringNullableFilter<"Case"> | string | null
-    forwardedToMukhtiarkarId?: StringNullableFilter<"Case"> | string | null
-    forwardedByName?: StringNullableFilter<"Case"> | string | null
-    createdAt?: DateTimeFilter<"Case"> | Date | string
-    updatedAt?: DateTimeNullableFilter<"Case"> | Date | string | null
-  }
-
   export type CaseCreateWithoutUserCasesInput = {
     id?: string
     code: string
@@ -15499,8 +16061,6 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15513,6 +16073,8 @@ export namespace Prisma {
     forwardedByName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    taluka?: TalukaCreateNestedOneWithoutCaseInput
+    deh?: DehCreateNestedOneWithoutCaseInput
     forwardedToMukhtiarkar?: UserCreateNestedOneWithoutForwardedCasesInput
     reports?: ReportCreateNestedManyWithoutCaseInput
     evidences?: EvidencesCreateNestedManyWithoutCaseInput
@@ -15529,8 +16091,8 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
+    talukaId?: string | null
+    dehId?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15641,8 +16203,6 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15655,6 +16215,8 @@ export namespace Prisma {
     forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taluka?: TalukaUpdateOneWithoutCaseNestedInput
+    deh?: DehUpdateOneWithoutCaseNestedInput
     forwardedToMukhtiarkar?: UserUpdateOneWithoutForwardedCasesNestedInput
     reports?: ReportUpdateManyWithoutCaseNestedInput
     evidences?: EvidencesUpdateManyWithoutCaseNestedInput
@@ -15671,8 +16233,8 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15779,8 +16341,6 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15793,6 +16353,8 @@ export namespace Prisma {
     forwardedByName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    taluka?: TalukaCreateNestedOneWithoutCaseInput
+    deh?: DehCreateNestedOneWithoutCaseInput
     forwardedToMukhtiarkar?: UserCreateNestedOneWithoutForwardedCasesInput
     evidences?: EvidencesCreateNestedManyWithoutCaseInput
     notes?: NotesCreateNestedManyWithoutCaseInput
@@ -15809,8 +16371,8 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
+    talukaId?: string | null
+    dehId?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -15855,8 +16417,6 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15869,6 +16429,8 @@ export namespace Prisma {
     forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taluka?: TalukaUpdateOneWithoutCaseNestedInput
+    deh?: DehUpdateOneWithoutCaseNestedInput
     forwardedToMukhtiarkar?: UserUpdateOneWithoutForwardedCasesNestedInput
     evidences?: EvidencesUpdateManyWithoutCaseNestedInput
     notes?: NotesUpdateManyWithoutCaseNestedInput
@@ -15885,8 +16447,8 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16064,11 +16626,38 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type CaseCreateManyTalukaInput = {
+    id?: string
+    code: string
+    title?: string | null
+    caseType?: string | null
+    status?: string | null
+    priority?: string | null
+    dateOfInstitution?: Date | string | null
+    nextDate?: Date | string | null
+    location?: string | null
+    dehId?: string | null
+    description?: string | null
+    mukhtiarkarACReportUploaded?: boolean
+    mukhtiarkarACReportPath?: string | null
+    evacueePropertyReportUploaded?: boolean
+    evacueePropertyReportPath?: string | null
+    barrageBranchReportUploaded?: boolean
+    barrageBranchReportPath?: string | null
+    newspaperPublicationUploaded?: boolean
+    newspaperPublicationPath?: string | null
+    forwardedToMukhtiarkarId?: string | null
+    forwardedByName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
   export type DehUpdateWithoutTalukaInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Case?: CaseUpdateManyWithoutDehNestedInput
   }
 
   export type DehUncheckedUpdateWithoutTalukaInput = {
@@ -16076,6 +16665,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Case?: CaseUncheckedUpdateManyWithoutDehNestedInput
   }
 
   export type DehUncheckedUpdateManyWithoutTalukaInput = {
@@ -16083,6 +16673,204 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CaseUpdateWithoutTalukaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    caseType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: NullableStringFieldUpdateOperationsInput | string | null
+    dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    evacueePropertyReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    evacueePropertyReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    barrageBranchReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    barrageBranchReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    newspaperPublicationUploaded?: BoolFieldUpdateOperationsInput | boolean
+    newspaperPublicationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    deh?: DehUpdateOneWithoutCaseNestedInput
+    forwardedToMukhtiarkar?: UserUpdateOneWithoutForwardedCasesNestedInput
+    reports?: ReportUpdateManyWithoutCaseNestedInput
+    evidences?: EvidencesUpdateManyWithoutCaseNestedInput
+    notes?: NotesUpdateManyWithoutCaseNestedInput
+    userCases?: UserCasesUpdateManyWithoutCaseNestedInput
+  }
+
+  export type CaseUncheckedUpdateWithoutTalukaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    caseType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: NullableStringFieldUpdateOperationsInput | string | null
+    dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    evacueePropertyReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    evacueePropertyReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    barrageBranchReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    barrageBranchReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    newspaperPublicationUploaded?: BoolFieldUpdateOperationsInput | boolean
+    newspaperPublicationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedToMukhtiarkarId?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reports?: ReportUncheckedUpdateManyWithoutCaseNestedInput
+    evidences?: EvidencesUncheckedUpdateManyWithoutCaseNestedInput
+    notes?: NotesUncheckedUpdateManyWithoutCaseNestedInput
+    userCases?: UserCasesUncheckedUpdateManyWithoutCaseNestedInput
+  }
+
+  export type CaseUncheckedUpdateManyWithoutTalukaInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    caseType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: NullableStringFieldUpdateOperationsInput | string | null
+    dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    evacueePropertyReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    evacueePropertyReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    barrageBranchReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    barrageBranchReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    newspaperPublicationUploaded?: BoolFieldUpdateOperationsInput | boolean
+    newspaperPublicationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedToMukhtiarkarId?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type CaseCreateManyDehInput = {
+    id?: string
+    code: string
+    title?: string | null
+    caseType?: string | null
+    status?: string | null
+    priority?: string | null
+    dateOfInstitution?: Date | string | null
+    nextDate?: Date | string | null
+    location?: string | null
+    talukaId?: string | null
+    description?: string | null
+    mukhtiarkarACReportUploaded?: boolean
+    mukhtiarkarACReportPath?: string | null
+    evacueePropertyReportUploaded?: boolean
+    evacueePropertyReportPath?: string | null
+    barrageBranchReportUploaded?: boolean
+    barrageBranchReportPath?: string | null
+    newspaperPublicationUploaded?: boolean
+    newspaperPublicationPath?: string | null
+    forwardedToMukhtiarkarId?: string | null
+    forwardedByName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+  }
+
+  export type CaseUpdateWithoutDehInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    caseType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: NullableStringFieldUpdateOperationsInput | string | null
+    dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    evacueePropertyReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    evacueePropertyReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    barrageBranchReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    barrageBranchReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    newspaperPublicationUploaded?: BoolFieldUpdateOperationsInput | boolean
+    newspaperPublicationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taluka?: TalukaUpdateOneWithoutCaseNestedInput
+    forwardedToMukhtiarkar?: UserUpdateOneWithoutForwardedCasesNestedInput
+    reports?: ReportUpdateManyWithoutCaseNestedInput
+    evidences?: EvidencesUpdateManyWithoutCaseNestedInput
+    notes?: NotesUpdateManyWithoutCaseNestedInput
+    userCases?: UserCasesUpdateManyWithoutCaseNestedInput
+  }
+
+  export type CaseUncheckedUpdateWithoutDehInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    caseType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: NullableStringFieldUpdateOperationsInput | string | null
+    dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    evacueePropertyReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    evacueePropertyReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    barrageBranchReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    barrageBranchReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    newspaperPublicationUploaded?: BoolFieldUpdateOperationsInput | boolean
+    newspaperPublicationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedToMukhtiarkarId?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reports?: ReportUncheckedUpdateManyWithoutCaseNestedInput
+    evidences?: EvidencesUncheckedUpdateManyWithoutCaseNestedInput
+    notes?: NotesUncheckedUpdateManyWithoutCaseNestedInput
+    userCases?: UserCasesUncheckedUpdateManyWithoutCaseNestedInput
+  }
+
+  export type CaseUncheckedUpdateManyWithoutDehInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    caseType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    priority?: NullableStringFieldUpdateOperationsInput | string | null
+    dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    evacueePropertyReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    evacueePropertyReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    barrageBranchReportUploaded?: BoolFieldUpdateOperationsInput | boolean
+    barrageBranchReportPath?: NullableStringFieldUpdateOperationsInput | string | null
+    newspaperPublicationUploaded?: BoolFieldUpdateOperationsInput | boolean
+    newspaperPublicationPath?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedToMukhtiarkarId?: NullableStringFieldUpdateOperationsInput | string | null
+    forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserCasesCreateManyUserInput = {
@@ -16113,8 +16901,8 @@ export namespace Prisma {
     dateOfInstitution?: Date | string | null
     nextDate?: Date | string | null
     location?: string | null
-    taluka?: string | null
-    deh?: string | null
+    talukaId?: string | null
+    dehId?: string | null
     description?: string | null
     mukhtiarkarACReportUploaded?: boolean
     mukhtiarkarACReportPath?: string | null
@@ -16193,8 +16981,6 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16207,6 +16993,8 @@ export namespace Prisma {
     forwardedByName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taluka?: TalukaUpdateOneWithoutCaseNestedInput
+    deh?: DehUpdateOneWithoutCaseNestedInput
     reports?: ReportUpdateManyWithoutCaseNestedInput
     evidences?: EvidencesUpdateManyWithoutCaseNestedInput
     notes?: NotesUpdateManyWithoutCaseNestedInput
@@ -16223,8 +17011,8 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16253,8 +17041,8 @@ export namespace Prisma {
     dateOfInstitution?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     nextDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
-    taluka?: NullableStringFieldUpdateOperationsInput | string | null
-    deh?: NullableStringFieldUpdateOperationsInput | string | null
+    talukaId?: NullableStringFieldUpdateOperationsInput | string | null
+    dehId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     mukhtiarkarACReportUploaded?: BoolFieldUpdateOperationsInput | boolean
     mukhtiarkarACReportPath?: NullableStringFieldUpdateOperationsInput | string | null

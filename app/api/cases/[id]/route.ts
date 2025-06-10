@@ -14,8 +14,16 @@ export async function GET(
         id: caseId,
       },
       include: {
-        //involvedOfficers: true,
-        //involvedPersons: true,
+        taluka: {
+          select: {
+            name: true,
+          },
+        },
+        deh: {
+          select: {
+            name: true,
+          },
+        },
         userCases: {
           include: {
             assignedToUser: true
@@ -64,8 +72,8 @@ export async function PUT(
       title, 
       caseType, 
       status, 
-      taluka, 
-      deh,
+      talukaId, 
+      dehId,
       dateOfInstitution, 
       nextDate, 
       location, 
@@ -85,8 +93,8 @@ export async function PUT(
         title,
         caseType,
         status,
-        taluka,
-        deh,
+        talukaId,
+        dehId,
         dateOfInstitution: new Date(dateOfInstitution),
         nextDate: new Date(nextDate),
         location,
