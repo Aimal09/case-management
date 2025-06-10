@@ -3,7 +3,14 @@ import type { NextRequest } from 'next/server';
 import { compactDecrypt, jwtVerify } from 'jose';
 
 // Routes that don't require authentication
-const publicRoutes = ['/login', '/forgot-password', '/reset-password', '/signup', '/api/auth/login'];
+const publicRoutes = [
+  '/login', 
+  '/forgot-password', 
+  '/reset-password', 
+  '/signup', 
+  '/api/auth/login', 
+  '/publicview', 
+  '/api/cases/publicview'];
 
 // Function to verify JWT token
 const verifyToken = async (token: string) => {

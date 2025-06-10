@@ -33,8 +33,8 @@ export default function NewCasePage() {
     // priority: 'Low' as string,
     title: '' as string,
     location: '' as string,
-    taluka: '' as string,
-    deh: '' as string,
+    talukaId: '' as string,
+    dehId: '' as string,
     nextDate: getCurrentLocalDatetime() as string,
     dateOfInstitution: getCurrentLocalDatetime() as string,
     description: '' as string,
@@ -166,7 +166,7 @@ export default function NewCasePage() {
     setSelectedDeh(''); // Reset deh selection when taluka changes
     setFormData(prev => ({
       ...prev,
-      taluka: talukas.find(t => t.id === talukaId)?.name || ''
+      talukaId: talukas.find(t => t.id === talukaId)?.id || ''
     }));
   };
 
@@ -177,7 +177,7 @@ export default function NewCasePage() {
     const selectedTalukaName = talukas.find(t => t.id === selectedTaluka)?.name || '';
     setFormData(prev => ({
       ...prev,
-      deh: `${selectedDehName}, ${selectedTalukaName}`
+      dehId: dehs.find(t => t.id === dehId)?.id || ''
     }));
   };
 
@@ -207,8 +207,8 @@ export default function NewCasePage() {
           status: 'Active',
           assignedToUserId: assignedToUserId || null,
           userId: user?.id,
-          taluka: formData.taluka,
-          deh: formData.deh,
+          talukaId: formData.talukaId,
+          dehId: formData.dehId,
           // involvedOfficers: officers.map(officer => ({
           //   code: officer.code,
           //   name: officer.name,

@@ -49,8 +49,8 @@ export async function POST(request: Request) {
         dateOfInstitution: new Date(data.dateOfInstitution),
         nextDate: new Date(data.nextDate),
         location: data.location,
-        taluka: data.taluka || null,
-        deh: data.deh || null,
+        talukaId: data.talukaId || null,
+        dehId: data.dehId || null,
         description: data.description
       },
       include: {

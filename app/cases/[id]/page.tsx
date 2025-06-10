@@ -208,18 +208,18 @@ export default function CaseDetailPage() {
                 </div>
                 <div>
                   <div className="text-sm font-medium text-gray-500 mb-1">Location</div>
-                  <div className="text-gray-800">{caseData.location}</div>
+                  <div className="text-gray-800">{caseData.location}</  div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <div className="text-sm font-medium text-gray-500 mb-1">Taluka</div>
-                  <div className="text-gray-800">{caseData.taluka}</div>
+                  <div className="text-gray-800">{caseData.taluka?.name}</div>
                 </div>
                 <div>
                   <div className="text-sm font-medium text-gray-500 mb-1">Deh</div>
-                  <div className="text-gray-800">{caseData.deh}</div>
+                  <div className="text-gray-800">{caseData.deh?.name}</div>
                 </div>
               </div>
 

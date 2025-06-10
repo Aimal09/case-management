@@ -109,7 +109,7 @@ export default function LoginPage() {
             </div>
           </div>
         )}
-        
+
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -187,10 +187,10 @@ export default function LoginPage() {
 
             <div className="mt-4 text-center">
               <Link 
-                href="/"
+                href="/publicview"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                Login As Guest
+                Login As Public
               </Link>
             </div>
           </div>
