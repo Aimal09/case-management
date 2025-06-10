@@ -10,7 +10,10 @@ const publicRoutes = [
   '/signup', 
   '/api/auth/login', 
   '/publicview', 
-  '/api/cases/publicview'];
+  '/api/cases/publicview',
+  '/api/talukas',
+  '/api/dehs',
+];
 
 // Function to verify JWT token
 const verifyToken = async (token: string) => {
