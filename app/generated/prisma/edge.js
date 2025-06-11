@@ -315,7 +315,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Ahsan Memon\\source\\repos\\NextJs\\case-management\\app\\generated\\prisma",
+      "value": "/root/app/case-management/app/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -324,7 +324,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       },
       {
@@ -333,7 +333,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Ahsan Memon\\source\\repos\\NextJs\\case-management\\prisma\\schema.prisma",
+    "sourceFilePath": "/root/app/case-management/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
